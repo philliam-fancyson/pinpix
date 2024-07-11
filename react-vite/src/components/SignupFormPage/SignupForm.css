@@ -1,0 +1,33 @@
+div.landing-page-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+form#signup-form {
+    width: fit-content;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    padding: 2em;
+    & h1 {
+      text-align: center;
+    }
+  }
+
+  form#signup-form > label {
+    display: flex;
+    flex-direction: column;
+    margin: 1em;
+  }
+
+  form#signup-form input {
+    display: flex;
+    flex-direction: column;
+    padding: 5px;
+    border: 1px solid lightgrey;
+    border-radius: 0.3em;
+  }

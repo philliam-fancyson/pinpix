@@ -1,15 +1,27 @@
 import { useState } from "react";
 import { thunkLogin } from "../../redux/session";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { Navigate, useNavigate } from "react-router-dom";
 import { useModal } from "../../context/Modal";
 import "./LoginForm.css";
 
 function LoginFormModal() {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
+  const sessionUser = useSelector((state) => state.session.user);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState({});
   const { closeModal } = useModal();
+
+  if (sessionUser) return <Navigate to="/" replace={true} />;
+
+  const loginDemo = (e) => {
+    e.preventDefault();
+    dispatch(thunkLogin({ email: "demo@aa.io", password: "password" }));
+    navigate("/");
+    closeModal();
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -29,32 +41,43 @@ function LoginFormModal() {
   };
 
   return (
-    <>
-      <h1>Log In</h1>
-      <form onSubmit={handleSubmit}>
+    <div className="landing-page-container">
+    <h1>Log In</h1>
+    {errors.length > 0 &&
+      errors.map((message) => <p key={message}>{message}</p>)}
+    <form id="login-form" onSubmit={handleSubmit}>
+      <div className="input-box">
         <label>
-          Email
           <input
             type="text"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             required
-          />
+            className="login-input"
+            />
+          <span className="floating-label">Email</span>
         </label>
-        {errors.email && <p>{errors.email}</p>}
+      </div>
+      {errors.email && <p>{errors.email}</p>}
+      <div className="input-box">
         <label>
-          Password
           <input
             type="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             required
-          />
+            className="login-input"
+            />
+          <span className="floating-label">Password</span>
         </label>
-        {errors.password && <p>{errors.password}</p>}
-        <button type="submit">Log In</button>
-      </form>
-    </>
+      </div>
+      {errors.password && <p>{errors.password}</p>}
+      <button type="submit">Log In</button>
+      <button className="modal-button" id="demo-user" onClick={loginDemo}>
+        Demo User
+      </button>
+    </form>
+  </div>
   );
 }
 

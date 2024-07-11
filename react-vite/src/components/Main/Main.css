@@ -4,9 +4,6 @@ div.main-content {
     width: 100%;
 
     & > div.main {
-      /* testing out background image */
-      background-image: url("./background.png");
-      /* background-repeat: no-repeat; */
       opacity: 85%;
 
       border: 1px solid lightgrey;

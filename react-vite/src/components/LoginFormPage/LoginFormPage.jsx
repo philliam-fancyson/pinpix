@@ -47,7 +47,6 @@ function LoginFormPage() {
       <form id="login-form" onSubmit={handleSubmit}>
         <div className="input-box">
           <label>
-            Email
             <input
               type="text"
               value={email}
@@ -61,7 +60,6 @@ function LoginFormPage() {
         {errors.email && <p>{errors.email}</p>}
         <div className="input-box">
           <label>
-            Password
             <input
               type="password"
               value={password}

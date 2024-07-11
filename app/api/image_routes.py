@@ -6,7 +6,7 @@ image_routes = Blueprint("images", __name__)
 
 @image_routes.route("/", methods=["GET"])
 def get_all_images():
-    return jsonify({"images": ImageUtils.get_all_images()})
+    return jsonify(ImageUtils.get_all_images())
 
 @image_routes.route("/", methods=["POST"])
 @login_required
