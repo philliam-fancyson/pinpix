@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import "./Main.css";
-import LoginFormPage from "../LoginFormPage";
+// import LoginFormPage from "../LoginFormPage";
 import SignupFormPage from "../SignupFormPage";
 import { getLatestImages } from "../../redux/image";
 

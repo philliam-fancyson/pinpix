@@ -25,7 +25,7 @@ export const getLatestImages = () => async (dispatch) => {
 // * Reducer
 const initialState = { images: [] }
 const imageReducer = (state = initialState, action) => {
-    let newState = {}
+    // let newState = {}
     switch(action.type) {
         case GET_IMAGES:
             return { ...state, images: action.images}
