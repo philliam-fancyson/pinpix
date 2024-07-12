@@ -24,6 +24,12 @@ class ImageUtils:
             raise Exception("Invalid Image Object from query")
 
     @staticmethod
+    def get_one_image(imageId):
+        print(imageId)
+        one_image = Image.query.get(imageId)
+        return ImageUtils.parse_data(one_image)
+
+    @staticmethod
     def get_all_images():
         """Get all images from database"""
         all_images = Image.query.order_by(Image.id.desc()).limit(20)

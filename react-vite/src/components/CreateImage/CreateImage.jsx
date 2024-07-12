@@ -22,8 +22,8 @@ function CreateImage() {
             title,
             user_id: sessionUser.id
         }
-        formData.append("user", userData)
-        console.log(formData)
+        formData.append("title", title)
+        formData.append("user_id", sessionUser.id)
         // aws uploads can be a bit slow—displaying
         // some sort of loading message is a good idea
         setImageLoading(true);
@@ -43,6 +43,12 @@ function CreateImage() {
                 type="file"
                 accept="image/*"
                 onChange={(e) => setImage(e.target.files[0])}
+                />
+                <input
+                type="text"
+                value={title}
+                onChange={(e) => setTitle(e.target.value)}
+                required
                 />
                 <button type="submit">Submit</button>
             {(imageLoading)&& <p>Loading...</p>}

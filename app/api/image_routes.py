@@ -12,22 +12,24 @@ image_routes = Blueprint("images", __name__)
 def get_all_images():
     return jsonify(ImageUtils.get_all_images())
 
+@image_routes.route("/<int:id>", methods=["GET"])
+def get_one_image(id):
+    return jsonify(ImageUtils.get_one_image(id))
+
 @image_routes.route("/new", methods=["POST"])
 @login_required
 def post_new_image():
     if "image" not in request.files:
         return {"errors": "image required"}, 400
 
-    image = request.image['image']
+    image = request.files['image']
+    print(image)
 
     if not allowed_file(image.filename):
         return {"errors": "file type not permitted"}, 400
 
     try:
-        print(request)
-        print(image)
         image.filename = get_unique_filename(image.filename)
-        print(image)
         upload = upload_file_to_s3(image)
         print(upload)
         if "url" not in upload:
@@ -37,14 +39,15 @@ def post_new_image():
             return upload, 400
 
         url = upload["url"]
-        userData = request.user['user']
-        new_image = Image(
-            title=userData['title'],
-            image_url=url,
-            user_id=userData['user_id']
-        )
-        db.session.add(new_image)
-        db.session.commit()
+        userData = request.form
+        print(url)
+        data = {
+            "title": userData['title'],
+            "image_url": url,
+            "tag_id": None
+        }
+
+        return jsonify({"image": ImageUtils.create_new_image(data)})
 
     except Exception as e:
         return jsonify({'error': str(e)}), 500

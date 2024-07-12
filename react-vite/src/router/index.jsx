@@ -4,6 +4,7 @@ import SignupFormPage from '../components/SignupFormPage';
 import Layout from './Layout';
 import Main from '../components/Main/Main'
 import CreateImage from '../components/CreateImage/CreateImage';
+import ImageDetails from '../components/ImageDetails/ImageDetails';
 
 export const router = createBrowserRouter([
   {
@@ -24,6 +25,10 @@ export const router = createBrowserRouter([
       {
         path: "/create",
         element: <CreateImage />
+      },
+      {
+        path: "/pin/:imageId",
+        element: <ImageDetails />
       }
     ],
   },
