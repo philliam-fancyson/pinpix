@@ -28,7 +28,8 @@ export const getLatestImages = () => async (dispatch) => {
   };
 
 export const addNewImage = (image) => async (dispatch) => {
-  const response = await fetch(`/api/images/`, {
+  console.log(image)
+  const response = await fetch(`/api/images/new`, {
     method: "POST",
   //   headers: {
   //     'Accept': 'application/json',
