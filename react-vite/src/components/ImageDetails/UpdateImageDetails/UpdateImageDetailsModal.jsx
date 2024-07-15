@@ -9,8 +9,8 @@ import "./UpdateImageDetailsModal.css"
 export default function UpdateImageDetailsModal({image}) {
     const dispatch = useDispatch();
     const { closeModal } = useModal();
-    const [title, setTitle] = useState(image.title)
-    const [description, setDescription] = useState(image.description)
+    const [title, setTitle] = useState(image.title ? image.title : "")
+    const [description, setDescription] = useState(image.description ? image.description : "")
     const [showMenu, setShowMenu] = useState(false);
     const ulRef = useRef();
 

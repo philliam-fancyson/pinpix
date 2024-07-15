@@ -5,8 +5,6 @@ import UpdateImageDetailsModal from "../UpdateImageDetails/UpdateImageDetailsMod
 import './ImageDetailsCard.css'
 
 export default function ImageDetailsCard( {image, user} ) {
-    console.log(image)
-    console.log(user)
     const sessionUser = useSelector(state => state.session.user)
     const [showMenu, setShowMenu] = useState(false);
     const ulRef = useRef();
