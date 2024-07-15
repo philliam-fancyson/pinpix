@@ -15,6 +15,7 @@ class ImageUtils:
             return {
                 "id": image_obj.id,
                 "title": image_obj.title,
+                "description": image_obj.description,
                 "image_url": image_obj.image_url,
                 "user_id": image_obj.user_id,
                 "tag_id": image_obj.tag_id,
@@ -42,6 +43,7 @@ class ImageUtils:
         new_image = Image(
             title=data["title"],
             image_url=data["image_url"],
+            description=data["description"],
             user_id=UserUtils.get_current_user()["id"],
             tag_id=data["tag_id"]
         )
@@ -49,6 +51,7 @@ class ImageUtils:
         try:
             db.session.add(new_image)
             db.session.commit()
+            print("GOOOD")
             return ImageUtils.parse_data(new_image)
         except:
             return 500

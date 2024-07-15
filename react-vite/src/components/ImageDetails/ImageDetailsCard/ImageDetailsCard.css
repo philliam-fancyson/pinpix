@@ -1,0 +1,17 @@
+.details-card {
+    display: flex;
+    border-radius: 20px;
+    box-shadow: 5px 2px 20px rgb(90, 90, 90);
+    overflow: hidden;
+    background-color: white;
+}
+
+.details-card img {
+    width: 508px;
+}
+
+.card-info {
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+}

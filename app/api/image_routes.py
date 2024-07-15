@@ -16,6 +16,12 @@ def get_all_images():
 def get_one_image(id):
     return jsonify(ImageUtils.get_one_image(id))
 
+@image_routes.route("/<int:id>", methods=["PUT"])
+def update_one_image(id):
+    req_body = request.get_json()
+    update_image = ImageUtils.update_image_by_id(id, req_body)
+    return jsonify(ImageUtils.get_one_image(id))
+
 @image_routes.route("/new", methods=["POST"])
 @login_required
 def post_new_image():
@@ -31,7 +37,6 @@ def post_new_image():
     try:
         image.filename = get_unique_filename(image.filename)
         upload = upload_file_to_s3(image)
-        print(upload)
         if "url" not in upload:
         # if the dictionary doesn't have a url key
         # it means that there was an error when you tried to upload
@@ -40,12 +45,14 @@ def post_new_image():
 
         url = upload["url"]
         userData = request.form
-        print(url)
+        print(userData)
         data = {
             "title": userData['title'],
+            "description": userData['description'],
             "image_url": url,
             "tag_id": None
         }
+        print(data)
 
         return jsonify({"image": ImageUtils.create_new_image(data)})
 

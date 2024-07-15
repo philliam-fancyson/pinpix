@@ -19,7 +19,7 @@ function Navigation() {
           <button>About</button>
         </NavLink>
         {user && (
-            <NavLink to="/">
+            <NavLink to="/create">
               <button>Create</button>
             </NavLink>
         )}

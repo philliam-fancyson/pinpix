@@ -8,6 +8,7 @@ class Image(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(50), nullable=False)
+    description =db.Column(db.String(2000))
     image_url = db.Column(db.String(2000), nullable=False)
     user_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod("users.id")), nullable=False)
     tag_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod("tags.id")))

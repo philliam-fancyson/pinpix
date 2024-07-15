@@ -1,0 +1,9 @@
+.update-modal {
+    display:flex;
+    flex-direction: column;
+}
+
+.update-modal form {
+    display: flex;
+    flex-direction: column;
+}

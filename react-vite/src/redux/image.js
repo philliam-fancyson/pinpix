@@ -1,3 +1,5 @@
+import { getUserInfo } from "./user"
+
 const GET_IMAGE = `image/getImage`
 const GET_IMAGES = 'image/getImages'
 const ADD_IMAGE = 'image/addImage'
@@ -18,11 +20,12 @@ const addImage = (image) => ({
 })
 
 // * Thunks
-export const getOneImage = (expenseId) => async (dispatch) => {
+export const getOneImage = (imageId) => async (dispatch) => {
   try {
-    const response = await fetch(`/api/images/${expenseId}`)
+    const response = await fetch(`/api/images/${imageId}`)
     if (response.ok) {
       const image = await response.json();
+      dispatch(getUserInfo(image.user_id))
       dispatch(getImage(image))
     } else {
       throw new Error("failed to load image")
