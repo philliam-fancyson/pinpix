@@ -26,8 +26,10 @@ function CreateImage() {
         // aws uploads can be a bit slow—displaying
         // some sort of loading message is a good idea
         setImageLoading(true);
-        await dispatch(addNewImage(formData));
-        // navigate("/")
+        let createdImage;
+        createdImage = await dispatch(addNewImage(formData));
+        console.log(createdImage)
+        navigate(`/pin/${createdImage.id}`)
         ;
     }
 

@@ -74,8 +74,8 @@ export const addNewImage = (image) => async (dispatch) => {
 
   if (response.ok) {
     const image = await response.json();
-    console.log(image)
     dispatch(addImage(image));
+    return image.image
   } else {
   throw new Error("failed to add image");
   }
@@ -98,13 +98,13 @@ export const updateImageInfo = (id, payload) => async (dispatch) => {
   }
 }
 
-export const deleteImage = (id) => async (dispatch) => {
+export const removeImage = (id) => async (dispatch) => {
   const response = await fetch(`/api/images/${id}`, {
     method: "DELETE",
   })
 
   if (response.ok) {
-    dispatch(removeImage(id))
+    dispatch(deleteImage(id))
   } else {
     throw new Error("failed to delete image")
   }
