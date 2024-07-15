@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { addNewImage } from "../../redux/image";
 
-const TAGS = ["Cyberpunk", "Vaporwave", "Solarpunk", "Cottagecore", "Vintage-Anime", "2000s", 'Skater"', "Beach", "7 Eleven ", "StreetWear"]
+// const TAGS = ["Cyberpunk", "Vaporwave", "Solarpunk", "Cottagecore", "Vintage-Anime", "2000s", 'Skater"', "Beach", "7 Eleven ", "StreetWear"]
 
 function CreateImage() {
     const navigate = useNavigate();

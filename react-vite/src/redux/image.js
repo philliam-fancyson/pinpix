@@ -138,6 +138,7 @@ const imageReducer = (state = initialState, action) => {
             images: state.images.filter(image => image.id !== action.imageId),
             image: {}
           }
+          return newState
         default:
             return state
     }

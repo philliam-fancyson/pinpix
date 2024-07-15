@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect} from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import OpenModalButton from "../../OpenModalButton/OpenModalButton";
 import UpdateImageDetailsModal from "../UpdateImageDetails/UpdateImageDetailsModal";
 import './ImageDetailsCard.css'

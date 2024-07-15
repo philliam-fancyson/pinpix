@@ -52,7 +52,7 @@ export default function UpdateImageDetailsModal({image}) {
                     type="text"
                     value={title}
                     onChange={(e) => setTitle(e.target.value)}
-                    placehholder="Add a title"
+                    placeholder="Add a title"
                     />
                 </label>
                 <label>

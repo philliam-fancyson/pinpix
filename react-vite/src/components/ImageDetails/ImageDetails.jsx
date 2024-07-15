@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { getOneImage } from "../../redux/image";
@@ -14,11 +14,11 @@ export default function ImageDetails() {
 
     useEffect(() => {
         dispatch(getOneImage(imageId))
-    }, [dispatch])
+    }, [dispatch, imageId])
 
     useEffect(() => {
         dispatch(getUserInfo(image.user_id))
-    }, [dispatch])
+    }, [dispatch, image.user_id])
 
     if (!image) return <p>Loading</p>
     return (
