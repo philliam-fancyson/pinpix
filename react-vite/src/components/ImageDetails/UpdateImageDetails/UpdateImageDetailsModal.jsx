@@ -1,9 +1,14 @@
 import { useState, useEffect, useRef } from "react"
-import "./UpdateImageDetailsModal.css"
+import { useDispatch } from "react-redux";
 import OpenModalButton from "../../OpenModalButton/OpenModalButton";
 import DeleteImageModal from "../DeleteImageModal/DeleteImageModal";
+import { useModal } from "../../../context/Modal";
+import { updateImageInfo } from "../../../redux/image";
+import "./UpdateImageDetailsModal.css"
 
 export default function UpdateImageDetailsModal({image}) {
+    const dispatch = useDispatch();
+    const { closeModal } = useModal();
     const [title, setTitle] = useState(image.title)
     const [description, setDescription] = useState(image.description)
     const [showMenu, setShowMenu] = useState(false);
@@ -29,6 +34,13 @@ export default function UpdateImageDetailsModal({image}) {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        const payload = {
+            title,
+            description
+        }
+
+        dispatch(updateImageInfo(image.id, payload))
+        .then(closeModal)
     }
     return (
         <div className="update-modal">
@@ -40,6 +52,7 @@ export default function UpdateImageDetailsModal({image}) {
                     type="text"
                     value={title}
                     onChange={(e) => setTitle(e.target.value)}
+                    placehholder="Add a title"
                     />
                 </label>
                 <label>
@@ -48,6 +61,7 @@ export default function UpdateImageDetailsModal({image}) {
                     type="text"
                     value={description}
                     onChange={(e) => setDescription(e.target.value)}
+                    placeholder="Write a detailed decsription for your Pin"
                     />
                 </label>
                 <OpenModalButton

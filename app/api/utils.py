@@ -56,6 +56,39 @@ class ImageUtils:
         except:
             return 500
 
+    @staticmethod
+    def update_image(id, details):
+        """Updates an existing image by id"""
+        image = Image.query.get(id)
+
+        current_user = UserUtils.get_current_user()["id"]
+        if not (current_user == image.user_id):
+            return 403
+
+        try:
+            if "title" in details:
+                image.title = details['title']
+            if "description" in details:
+                image.description = details['description']
+            db.session.commit()
+        except Exception:
+            return 500
+
+        updated_image = ImageUtils.get_one_image(id)
+        return updated_image
+
+    @staticmethod
+    def delete_one_image(id):
+        """Delete record of image"""
+        image = Image.query.get(id)
+
+        if UserUtils.get_current_user()["id"] == image.user_id:
+            db.session.delete(image)
+            db.session.commit()
+            return True
+        else:
+            return False
+
 class UserUtils:
     """Get the current user's id """
     @staticmethod

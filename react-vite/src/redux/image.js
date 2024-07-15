@@ -3,6 +3,8 @@ import { getUserInfo } from "./user"
 const GET_IMAGE = `image/getImage`
 const GET_IMAGES = 'image/getImages'
 const ADD_IMAGE = 'image/addImage'
+const UPDATE_IMAGE = 'image/updateImage'
+const DELETE_IMAGE = 'image/deleteImage'
 
 const getImage = (image) => ({
   type: GET_IMAGE,
@@ -17,6 +19,16 @@ const getImages = (images) => ({
 const addImage = (image) => ({
   type: ADD_IMAGE,
   image
+})
+
+const updateImage = (image) => ({
+  type: UPDATE_IMAGE,
+  image
+})
+
+const deleteImage = (imageId) => ({
+  type: DELETE_IMAGE,
+  imageId
 })
 
 // * Thunks
@@ -66,9 +78,37 @@ export const addNewImage = (image) => async (dispatch) => {
     dispatch(addImage(image));
   } else {
   throw new Error("failed to add image");
-}
+  }
 }
 
+export const updateImageInfo = (id, payload) => async (dispatch) => {
+  const response = await fetch(`/api/images/${id}`, {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify(payload)
+  });
+
+  if (response.ok) {
+    const image = await response.json();
+    return dispatch(updateImage(image))
+  } else {
+    throw new Error("failed to update iamge");
+  }
+}
+
+export const deleteImage = (id) => async (dispatch) => {
+  const response = await fetch(`/api/images/${id}`, {
+    method: "DELETE",
+  })
+
+  if (response.ok) {
+    dispatch(removeImage(id))
+  } else {
+    throw new Error("failed to delete image")
+  }
+}
 
 // * Reducer
 const initialState = { images: [], image: {} }
@@ -86,6 +126,18 @@ const imageReducer = (state = initialState, action) => {
             image: action.image
             }
           return newState
+        case UPDATE_IMAGE:
+          newState = {
+            ...state,
+            image: action.image
+          }
+          return newState
+        case DELETE_IMAGE:
+          newState = {
+            ...state,
+            images: state.images.filter(image => image.id !== action.imageId),
+            image: {}
+          }
         default:
             return state
     }
