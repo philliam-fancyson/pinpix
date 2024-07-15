@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 import "./Main.css";
 // import LoginFormPage from "../LoginFormPage";
 import SignupFormPage from "../SignupFormPage";
@@ -26,11 +27,12 @@ function Main() {
 
     return (
         <>
-            <h1>Test H1</h1>
             <div className="landing-grid">
                 {latestImages && latestImages.map((image, index) =>
                     <div key={index}>
-                        <h1>Image Placeholder {index}</h1>
+                        <Link to={`/pin/${image.id}`}>
+                            <img src={image.image_url} />
+                        </Link>
                     </div>
                 )}
             </div>

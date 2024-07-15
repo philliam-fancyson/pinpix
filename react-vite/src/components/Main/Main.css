@@ -97,3 +97,7 @@ div.main-content {
     width: 500px;
     background-color: rgba(245, 245, 245, 0.645);
   }
+
+  .landing-grid img {
+    width: 236px;
+  }
