@@ -3,6 +3,7 @@ from app.models import db, User, Image, Collection, collection_images
 from flask_login import current_user
 from flask import Response
 from datetime import datetime
+from sqlalchemy.orm import joinedload
 import json
 
 class UserUtils:
@@ -60,7 +61,6 @@ class ImageUtils:
         try:
             db.session.add(new_image)
             db.session.commit()
-            print("GOOOD")
             return ImageUtils.parse_data(new_image)
         except:
             return 500
@@ -123,3 +123,21 @@ class CollectionUtils:
             return user_collections
         except:
             raise Exception("Problem grabbing collection")
+
+    @staticmethod
+    def get_collection_images(title):
+        """
+        Query Collection for collection id based on title
+        Query collection_images for all images based on collection id
+        Query Images for all images from a list (Eager Load?)
+        TODO: Error handling for non-existant entries
+        """
+        collection_id = Collection.query.filter(Collection.title.ilike(title)).first().id
+        images = Image.query \
+                    .join(collection_images) \
+                    .filter(
+                        collection_images.c.collection_id == collection_id
+                        ) \
+                    .order_by(Image.id.desc()) \
+                    .options(joinedload(Image.collection_images)).all()
+        return list(map(lambda x: ImageUtils.parse_data(x), images))
