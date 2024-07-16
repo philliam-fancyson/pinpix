@@ -1,9 +1,19 @@
 from os import name
-from app.models import db, User, Image
+from app.models import db, User, Image, Collection, collection_images
 from flask_login import current_user
 from flask import Response
 from datetime import datetime
 import json
+
+class UserUtils:
+    """Get the current user's id """
+    @staticmethod
+    def get_current_user():
+        """Get the current user info"""
+        if current_user.is_authenticated:
+            return current_user.to_dict()
+        else:
+            raise Exception("User not logged in")
 
 class ImageUtils:
     """Image Utility Functions"""
@@ -26,7 +36,6 @@ class ImageUtils:
 
     @staticmethod
     def get_one_image(imageId):
-        print(imageId)
         one_image = Image.query.get(imageId)
         return ImageUtils.parse_data(one_image)
 
@@ -61,8 +70,8 @@ class ImageUtils:
         """Updates an existing image by id"""
         image = Image.query.get(id)
 
-        current_user = UserUtils.get_current_user()["id"]
-        if not (current_user == image.user_id):
+        current_user_id = UserUtils.get_current_user()["id"]
+        if not (current_user_id == image.user_id):
             return 403
 
         try:
@@ -89,12 +98,30 @@ class ImageUtils:
         else:
             return False
 
-class UserUtils:
-    """Get the current user's id """
+class CollectionUtils:
+    """Collection Utility Functions"""
+
     @staticmethod
-    def get_current_user():
-        """Get the current user info"""
-        if current_user.is_authenticated:
-            return current_user.to_dict()
-        else:
-            raise Exception("User not logged in")
+    def parse_data(collection_obj):
+        """ Parse Image Object into python dictionary"""
+        try:
+            return {
+                "id": collection_obj.id,
+                "title": collection_obj.title,
+                "tag_id": collection_obj.tag_id,
+                "user_id": collection_obj.user_id,
+            }
+        except:
+            raise Exception("Invalid Collection Object from query")
+
+    @staticmethod
+    def get_user_collections():
+        try:
+            current_user_id = UserUtils.get_current_user()["id"]
+            user_collections = Collection.query.filter_by(user_id=current_user_id).order_by(Collection.id.desc())
+            print(user_collections)
+            user_collections = list(map(lambda x:  CollectionUtils.parse_data(x), user_collection))
+            print(user_collections)
+            return list({x["id"]: x for x in user_collections}.values())
+        except:
+            raise Exception("Problem grabbing collection")

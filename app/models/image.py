@@ -1,4 +1,5 @@
 from .db import db, environment, SCHEMA, add_prefix_for_prod
+from .collection_image import collection_images
 
 class Image(db.Model):
     __tablename__ = 'images'
@@ -19,6 +20,6 @@ class Image(db.Model):
         "Tag", back_populates="image_tags"
     )
 
-    collections_images = db.relationship(
-        "Collection", secondary="collection_images", back_populates="image_collections"
+    collection_images = db.relationship(
+        "Collection", secondary=collection_images, back_populates="image_collections"
     )
