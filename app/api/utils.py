@@ -119,9 +119,7 @@ class CollectionUtils:
         try:
             current_user_id = UserUtils.get_current_user()["id"]
             user_collections = Collection.query.filter_by(user_id=current_user_id).order_by(Collection.id.desc())
-            print(user_collections)
-            user_collections = list(map(lambda x:  CollectionUtils.parse_data(x), user_collection))
-            print(user_collections)
-            return list({x["id"]: x for x in user_collections}.values())
+            user_collections = list(map(lambda x:  CollectionUtils.parse_data(x), user_collections))
+            return user_collections
         except:
             raise Exception("Problem grabbing collection")

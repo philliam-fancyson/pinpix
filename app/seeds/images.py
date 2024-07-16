@@ -7,21 +7,21 @@ def seed_images():
 
     image1 = Image(
         title="Test 1",
-        image_url="test/url",
+        image_url="s3://pinpix-bucket/1f406a2cbf3f45848c5c36fac2f56e32.jpg",
         user_id="1"
         )
     images.append(image1)
 
     image2 = Image(
         title="Test 2",
-        image_url="test/url",
+        image_url="s3://pinpix-bucket/40022dd6f068451782cecd53150a9dc4.jpg",
         user_id="2"
         )
     images.append(image2)
 
     image3 = Image(
         title="Test 3",
-        image_url="test/url",
+        image_url="s3://pinpix-bucket/4d5e688442a94228a898b2119759f723.jpg",
         user_id="3"
         )
     images.append(image3)

@@ -3,8 +3,8 @@ from .db import db, environment, SCHEMA, add_prefix_for_prod
 collection_images = db.Table(
     'collection_images',
     db.Column('id', db.Integer, primary_key=True),
-    db.Column('collection_id', db.Integer, db.ForeignKey(add_prefix_for_prod('collections.id')), primary_key=True),
-    db.Column('image_id', db.Integer, db.ForeignKey(add_prefix_for_prod('images.id')), primary_key=True)
+    db.Column('collection_id', db.Integer, db.ForeignKey(add_prefix_for_prod('collections.id'))),
+    db.Column('image_id', db.Integer, db.ForeignKey(add_prefix_for_prod('images.id')))
     )
 
 if environment == "production":
