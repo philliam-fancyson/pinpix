@@ -14,3 +14,7 @@ class Tag(db.Model):
     image_tags = db.relationship(
         "Image", back_populates="tag_images"
     )
+
+    collection_tags = db.relationship(
+        "Collection", back_populates="tag_collections"
+    )
