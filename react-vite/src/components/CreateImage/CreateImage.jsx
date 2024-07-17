@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { addNewImage } from "../../redux/image";
@@ -12,8 +12,20 @@ function CreateImage() {
     const [imageLoading, setImageLoading] = useState(false);
     const [title, setTitle] = useState("")
     const [description, setDescription] = useState("")
+    const [previewImg, setPreviewImg] = useState("")
     const sessionUser = useSelector(state => state.session.user);
 
+    useEffect(() => {
+        if (!image) {
+            setPreviewImg("")
+            return
+        }
+
+        const objectUrl = URL.createObjectURL(image)
+        setPreviewImg(objectUrl)
+
+        return () => URL.revokeObjectURL(objectUrl)
+    }, [image])
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -29,8 +41,7 @@ function CreateImage() {
         let createdImage;
         createdImage = await dispatch(addNewImage(formData));
         console.log(createdImage)
-        navigate(`/pin/${createdImage.id}`)
-        ;
+        navigate(`/pin/${createdImage.id}`);
     }
 
     return (
@@ -42,11 +53,15 @@ function CreateImage() {
             >
                 <label>
                     file
+                    <input type="button" id="file-button" value="Test Upload" onClick={() => document.getElementById('file-button-hidden').click()} />
                     <input
                     type="file"
+                    id="file-button-hidden"
                     accept="image/*"
                     onChange={(e) => setImage(e.target.files[0])}
+                    style={{"display":"none"}}
                     />
+                    { image && <img src={previewImg}/> }
                 </label>
                 <label>
                     title
