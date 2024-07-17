@@ -34,6 +34,24 @@ def update_collection_details(id):
         return jsonify({"message": "Updating Image Failed"}), 500
     return jsonify(update_collection), 200
 
+@collection_routes.route("/boards/<int:id>/images", methods=["POST"])
+@login_required
+def add_image_to_collection(id):
+    try:
+        image_id = request.get_json()['imageId']
+        return jsonify(CollectionUtils.add_to_collection(id, image_id))
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
+
+@collection_routes.route("/boards/<int:id>/images", methods=["DELETE"])
+@login_required
+def delete_image_from_collection(id):
+    try:
+        image_id = request.get_json()['imageId']
+        return jsonify(CollectionUtils.remove_from_collection(id, image_id))
+    except Exception as e:
+        return {'error': str(e)}, 500
+
 @collection_routes.route("/boards/<int:id>", methods=["DELETE"])
 @login_required
 def delete_collection(id):

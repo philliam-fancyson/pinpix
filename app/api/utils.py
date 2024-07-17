@@ -4,6 +4,7 @@ from flask_login import current_user
 from flask import Response
 from datetime import datetime
 from sqlalchemy.orm import joinedload
+from sqlalchemy import insert, delete
 import json
 
 class UserUtils:
@@ -201,3 +202,33 @@ class CollectionUtils:
             return True
         else:
             return False
+
+    @staticmethod
+    def add_to_collection(id, image_id):
+        """Add an image to a collection"""
+        # ? Maybe add a constraint that only adds if it is unique
+        # TODO check if it exists
+        # TODO check if user is owner of collection
+        try:
+            db.session.execute(insert(collection_images), {"collection_id": id, "image_id": image_id})
+            db.session.commit()
+            return True
+        except Exception as e:
+            return e
+
+    @staticmethod
+    def remove_from_collection(id, image_id):
+        """Remove image from collection"""
+        # TODO check if it exists
+        # TODO check if user is owner of collection
+
+        try:
+            record = delete(collection_images).where(
+                collection_images.c.collection_id == id,
+                collection_images.c.image_id == image_id
+                )
+            db.session.execute(record)
+            db.session.commit()
+            return True
+        except Exception as e:
+            return e
