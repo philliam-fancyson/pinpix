@@ -5,6 +5,7 @@ import "./Navigation.css";
 
 function Navigation() {
   const user = useSelector((state) => state.session.user);
+
   return (
     <nav id="navbar">
       <div id="navbar-left">
@@ -31,7 +32,7 @@ function Navigation() {
       </div>
       <div id="navbar-right">
         {user && (
-              <NavLink to="/">
+              <NavLink to={`/boards/${user.username}`}>
                 <button>Collection</button>
               </NavLink>
           )}

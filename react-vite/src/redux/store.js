@@ -8,10 +8,12 @@ import thunk from "redux-thunk";
 import sessionReducer from "./session";
 import imageReducer from "./image";
 import userReducer from "./user";
+import collectionReducer from "./collection";
 
 const rootReducer = combineReducers({
   session: sessionReducer,
   image: imageReducer,
+  collection: collectionReducer,
   user: userReducer
 });
 

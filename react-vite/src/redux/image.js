@@ -57,7 +57,6 @@ export const getLatestImages = () => async (dispatch) => {
         throw new Error("failed to load images");
       }
     } catch (err) {
-      console.log(err);
       return err;
     }
   };
