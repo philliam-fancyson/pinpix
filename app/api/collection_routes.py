@@ -15,12 +15,34 @@ def get_collection_images(title):
     return jsonify(CollectionUtils.get_collection_images(format_title))
 
 @collection_routes.route("/create", methods=["POST"])
+@login_required
 def create_collection():
     req_body = request.get_json()
     try:
         return jsonify(CollectionUtils.create_collection(req_body))
     except Exception as e:
         return jsonify({'error': str(e)}), 500
+
+@collection_routes.route("/boards/<int:id>", methods=["PUT"])
+@login_required
+def update_collection_details(id):
+    req_body = request.get_json()
+    update_collection = CollectionUtils.update_collection(id, req_body)
+    if update_collection == 403:
+        return jsonify({"message": "Not Authorized"}), 403
+    if update_collection == 500:
+        return jsonify({"message": "Updating Image Failed"}), 500
+    return jsonify(update_collection), 200
+
+@collection_routes.route("/boards/<int:id>", methods=["DELETE"])
+@login_required
+def delete_collection(id):
+    status = CollectionUtils.delete_collection(id)
+    if status:
+        return jsonify({"message": "Successfully Delete"}), 200
+    else:
+        return jsonify({"message": "Internal Server Error"}), 500
+
 
 # * Current User Collections
 @collection_routes.route("/current", methods=["GET"])

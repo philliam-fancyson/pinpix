@@ -170,3 +170,34 @@ class CollectionUtils:
             return CollectionUtils.parse_data(new_collection)
         except Exception as e:
             return e
+
+    @staticmethod
+    def update_collection(id, details):
+        """Update an existing collection info"""
+        collection = Collection.query.get(id)
+        current_user_id = UserUtils.get_current_user()["id"]
+        if not (current_user_id == collection.user_id):
+            return 403
+
+        try:
+            if "title" in details:
+                collection.title = details['title']
+            if "description" in details:
+                collection.description = details['description']
+            db.session.commit()
+        except Exception:
+            return 500
+
+        updated_collection = CollectionUtils.get_collection_details(id)
+        return updated_collection
+
+    @staticmethod
+    def delete_collection(id):
+        """Delete Collection record"""
+        collection = Collection.query.get(id)
+        if UserUtils.get_current_user()["id"] == collection.user_id:
+            db.session.delete(collection)
+            db.session.commit()
+            return True
+        else:
+            return False
