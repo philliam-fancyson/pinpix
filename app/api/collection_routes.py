@@ -34,6 +34,16 @@ def update_collection_details(id):
         return jsonify({"message": "Updating Image Failed"}), 500
     return jsonify(update_collection), 200
 
+@collection_routes.route("/boards/<int:id>", methods=["DELETE"])
+@login_required
+def delete_collection(id):
+    status = CollectionUtils.delete_collection(id)
+    if status:
+        return jsonify({"message": "Successfully Delete"}), 200
+    else:
+        return jsonify({"message": "Internal Server Error"}), 500
+
+# * Collection Image Add/Remove
 @collection_routes.route("/boards/<int:id>/images", methods=["POST"])
 @login_required
 def add_image_to_collection(id):
@@ -51,15 +61,6 @@ def delete_image_from_collection(id):
         return jsonify(CollectionUtils.remove_from_collection(id, image_id))
     except Exception as e:
         return {'error': str(e)}, 500
-
-@collection_routes.route("/boards/<int:id>", methods=["DELETE"])
-@login_required
-def delete_collection(id):
-    status = CollectionUtils.delete_collection(id)
-    if status:
-        return jsonify({"message": "Successfully Delete"}), 200
-    else:
-        return jsonify({"message": "Internal Server Error"}), 500
 
 
 # * Current User Collections
