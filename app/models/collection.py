@@ -9,6 +9,7 @@ class Collection(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(50), nullable=False)
+    description =db.Column(db.String(2000))
     tag_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod("tags.id")))
     user_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod("users.id")), nullable=False)
 

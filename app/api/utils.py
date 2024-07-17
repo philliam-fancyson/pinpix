@@ -108,11 +108,17 @@ class CollectionUtils:
             return {
                 "id": collection_obj.id,
                 "title": collection_obj.title,
+                "description": collection_obj.description,
                 "tag_id": collection_obj.tag_id,
                 "user_id": collection_obj.user_id,
             }
         except:
             raise Exception("Invalid Collection Object from query")
+
+    @staticmethod
+    def get_collection_details(id):
+        collection_info = Collection.query.get(id)
+        return CollectionUtils.parse_data(collection_info)
 
     @staticmethod
     def get_user_collections():
@@ -125,14 +131,20 @@ class CollectionUtils:
             raise Exception("Problem grabbing collection")
 
     @staticmethod
+    def get_collection_id_from_title(title):
+        return_collection = Collection.query.filter(Collection.title.ilike(title)).first()
+        if return_collection is None:
+            raise Exception("Could not find collection")
+        return return_collection.id
+
+    @staticmethod
     def get_collection_images(title):
         """
         Query Collection for collection id based on title
         Query collection_images for all images based on collection id
         Query Images for all images from a list (Eager Load?)
-        TODO: Error handling for non-existant entries
         """
-        collection_id = Collection.query.filter(Collection.title.ilike(title)).first().id
+        collection_id = CollectionUtils.get_collection_id_from_title(title)
         images = Image.query \
                     .join(collection_images) \
                     .filter(
@@ -141,3 +153,20 @@ class CollectionUtils:
                     .order_by(Image.id.desc()) \
                     .options(joinedload(Image.collection_images)).all()
         return list(map(lambda x: ImageUtils.parse_data(x), images))
+
+    @staticmethod
+    def create_collection(data):
+        """Create a new collection"""
+        new_collection = Collection(
+            title=data["title"],
+            description=data["description"],
+            tag_id=data["tag_id"],
+            user_id=UserUtils.get_current_user()["id"]
+        )
+
+        try:
+            db.session.add(new_collection)
+            db.session.commit()
+            return CollectionUtils.parse_data(new_collection)
+        except Exception as e:
+            return e

@@ -32,7 +32,6 @@ def post_new_image():
         return {"errors": "image required"}, 400
 
     image = request.files['image']
-    print(image)
 
     if not allowed_file(image.filename):
         return {"errors": "file type not permitted"}, 400
@@ -48,14 +47,13 @@ def post_new_image():
 
         url = upload["url"]
         userData = request.form
-        print(userData)
+        # TODO Check tag_id and see if you can just call userData['tag_id"]
         data = {
             "title": userData['title'],
             "description": userData['description'],
             "image_url": url,
             "tag_id": None
         }
-        print(data)
 
         return jsonify({"image": ImageUtils.create_new_image(data)})
 
@@ -65,6 +63,7 @@ def post_new_image():
 @image_routes.route("/<int:id>", methods=["DELETE"])
 @login_required
 def delete_one_image(id):
+    # TODO delete from AWS; code already in s3 bucket, need to test
     status = ImageUtils.delete_one_image(id)
     if status:
         return jsonify({"message": "Successfully Delete"}), 200
