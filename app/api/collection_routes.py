@@ -8,15 +8,17 @@ collection_routes = Blueprint("collections", __name__)
 @collection_routes.route('/boards/<int:id>',  methods=["GET"])
 def get_collection_info(id):
     return jsonify(CollectionUtils.get_collection_details(id))
-
+0
 @collection_routes.route("/boards/<string:title>", methods=["GET"])
-def get_collection_images(title):
+def get_collection_details(title):
     format_title = title.replace('-', ' ')
-    return jsonify(CollectionUtils.get_collection_images(format_title))
+    collection_id = CollectionUtils.get_collection_id_from_title(format_title)
+    return jsonify(CollectionUtils.get_collection_details(collection_id))
 
 @collection_routes.route("/create", methods=["POST"])
 @login_required
 def create_collection():
+    print("******************WE HITTING*(*********)")
     req_body = request.get_json()
     try:
         return jsonify(CollectionUtils.create_collection(req_body))
@@ -43,7 +45,12 @@ def delete_collection(id):
     else:
         return jsonify({"message": "Internal Server Error"}), 500
 
-# * Collection Image Add/Remove
+# * Collection Image
+@collection_routes.route("/boards/<string:title>/images", methods=["GET"])
+def get_collection_images(title):
+    format_title = title.replace('-', ' ')
+    return jsonify(CollectionUtils.get_collection_images(format_title))
+
 @collection_routes.route("/boards/<int:id>/images", methods=["POST"])
 @login_required
 def add_image_to_collection(id):
@@ -72,3 +79,5 @@ def get_user_collections():
 def get_user_collection_images(title):
     format_title = title.replace('-', ' ')
     return jsonify(CollectionUtils.get_collection_images(format_title))
+
+# TODO Other User Collections
