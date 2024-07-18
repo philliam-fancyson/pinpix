@@ -1,16 +1,15 @@
 import { useState, useEffect, useRef } from "react"
 import { useDispatch } from "react-redux";
 import OpenModalButton from "../../OpenModalButton/OpenModalButton";
-import DeleteImageModal from "../DeleteImageModal/DeleteImageModal";
+import DeleteCollectionModals from "./DeleteCollectionModal";
 import { useModal } from "../../../context/Modal";
-import { updateImageInfo } from "../../../redux/image";
-import "./UpdateImageDetailsModal.css"
+import { thunkUpdateCollectionDetails } from "../../../redux/collection";
 
-export default function UpdateImageDetailsModal({image}) {
+export default function UpdateCollectionModal ({collection}) {
     const dispatch = useDispatch();
     const { closeModal } = useModal();
-    const [title, setTitle] = useState(image.title ? image.title : "")
-    const [description, setDescription] = useState(image.description ? image.description : "")
+    const [title, setTitle] = useState(collection.title)
+    const [description, setDescription] = useState(collection.description ? collection.description : "")
     const [showMenu, setShowMenu] = useState(false);
     const ulRef = useRef();
 
@@ -19,15 +18,15 @@ export default function UpdateImageDetailsModal({image}) {
         if (!showMenu) return;
 
         const closeMenu = (e) => {
-          if (!ulRef.current.contains(e.target)) {
+        if (!ulRef.current.contains(e.target)) {
             setShowMenu(false);
-          }
+        }
         };
 
         document.addEventListener('click', closeMenu);
 
         return () => document.removeEventListener("click", closeMenu);
-      }, [showMenu]);
+    }, [showMenu]);
 
     const closeMenu = () => setShowMenu(false);
     // * Modal Components End
@@ -38,14 +37,13 @@ export default function UpdateImageDetailsModal({image}) {
             title,
             description
         }
-
-        dispatch(updateImageInfo(image.id, payload))
-        .then(closeModal)
+        dispatch(thunkUpdateCollectionDetails(collection.id, payload))
+            .then(closeModal)
     }
 
     return (
         <div className="update-modal">
-            <h1>Edit Pin</h1>
+            <h1>Edit Board</h1>
             <form onSubmit={handleSubmit}>
                 <label>
                     <h2>Title</h2>
@@ -68,7 +66,7 @@ export default function UpdateImageDetailsModal({image}) {
                 <OpenModalButton
                 buttonText="Delete"
                 onButtonClick={closeMenu}
-                modalComponent={<DeleteImageModal image={image}/>}
+                modalComponent={<DeleteCollectionModals collection={collection}/>}
                 />
                 <button type="submit">Save</button>
             </form>

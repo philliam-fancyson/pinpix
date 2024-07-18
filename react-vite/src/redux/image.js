@@ -61,6 +61,17 @@ export const getLatestImages = () => async (dispatch) => {
     }
   };
 
+export const thunkGetCollectionImages = (title) => async (dispatch) => {
+    title = title.replaceAll(" ", "-")
+    const response = await fetch(`/api/collections/boards/${title}/images`);
+    if (response.ok) {
+        const images = await response.json()
+        dispatch(getImages(images));
+    } else {
+        throw new Error("failed to load images")
+    }
+}
+
 export const addNewImage = (image) => async (dispatch) => {
   const response = await fetch(`/api/images/new`, {
     method: "POST",
@@ -93,7 +104,7 @@ export const updateImageInfo = (id, payload) => async (dispatch) => {
     const image = await response.json();
     return dispatch(updateImage(image))
   } else {
-    throw new Error("failed to update iamge");
+    throw new Error("failed to update image");
   }
 }
 

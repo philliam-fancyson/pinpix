@@ -6,12 +6,12 @@ div.main-content {
     & > div.main {
       opacity: 85%;
 
-      border: 1px solid lightgrey;
+      /* border: 1px solid lightgrey; */
       width: 85%;
       min-height: 80vh;
       margin: 0 20px;
       border-radius: 1em;
-      background-color: lightcoral;
+      /* background-color: lightcoral; */
       /* display: flex; */
       flex-direction: column;
       /* align-items: center; */
