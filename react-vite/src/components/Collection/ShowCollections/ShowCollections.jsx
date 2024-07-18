@@ -47,7 +47,7 @@ export default function ShowCollections() {
             onButtonClick={closeMenu}
             modalComponent={<CreateCollectionModal />}
             />
-            <div id="collection-gallery">
+            <div id="board-gallery">
                 {userCollections && userCollections.map((collection, index) =>
                     <CollectionCard collection={collection} username={username} key={index}/>
                 )}

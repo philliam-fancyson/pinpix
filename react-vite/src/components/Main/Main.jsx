@@ -5,6 +5,10 @@ import "./Main.css";
 // import LoginFormPage from "../LoginFormPage";
 import SignupFormPage from "../SignupFormPage";
 import { getLatestImages } from "../../redux/image";
+import PinSmall from "../PinCard/PinSmall";
+import PinMedium from "../PinCard/PinMedium";
+import PinLarge from "../PinCard/PinLarge";
+
 
 function Main() {
     const dispatch = useDispatch();
@@ -31,23 +35,11 @@ function Main() {
             <div className="landing-grid">
             {latestImages && latestImages.map((image, index) =>
                 (index + 1) % 3 === 0 ? (
-                    <div className="pin-card card-large" key={index}>
-                    <Link to={`/pin/${image.id}`}>
-                        <img src={image.image_url} />
-                    </Link>
-                    </div>
+                    <PinLarge image={image} index={index}/>
                 ) : (index + 1) % 2 === 0 ? (
-                    <div className="pin-card card-medium" key={index}>
-                        <Link to={`/pin/${image.id}`}>
-                            <img src={image.image_url} />
-                        </Link>
-                        </div>
+                    <PinMedium image={image} index={index}/>
                 ) : (
-                        <div className="pin-card card-small" key={index}>
-                        <Link to={`/pin/${image.id}`}>
-                            <img src={image.image_url} />
-                        </Link>
-                        </div>
+                    <PinSmall image={image} index={index}/>
                 )
                 )}
             </div>

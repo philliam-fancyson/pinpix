@@ -113,21 +113,3 @@ div.main-content {
     width: 236px;
     max-height: 100%;
   }
-
-  .pin-card {
-    border-radius: 16px;
-    overflow: hidden;
-    margin: 10px 16px;
-  }
-
-  .card-small {
-    grid-row-end: span 26
-  }
-
-  .card-medium {
-    grid-row-end: span 33
-  }
-
-  .card-large {
-    grid-row-end: span 45
-  }

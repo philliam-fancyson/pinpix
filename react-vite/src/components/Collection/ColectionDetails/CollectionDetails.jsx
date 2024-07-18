@@ -6,6 +6,10 @@ import UpdateCollectionModal from "../Modals/UpdateCollectionModal";
 import { getUserInfo } from "../../../redux/user";
 import { thunkGetCollectionDetails } from "../../../redux/collection";
 import { thunkGetCollectionImages } from "../../../redux/image";
+import PinSmall from "../../PinCard/PinSmall";
+import PinMedium from "../../PinCard/PinMedium";
+import PinLarge from "../../PinCard/PinLarge";
+import './CollectionDetails.css'
 
 export default function CollectionDetails() {
     const dispatch = useDispatch()
@@ -61,11 +65,13 @@ export default function CollectionDetails() {
                 )}
             <div id="collection-gallery">
                 {collectionImages && collectionImages.map((image, index) =>
-                    <div key={index}>
-                        <Link to={`/pin/${image.id}`}>
-                            <img src={image.image_url} />
-                        </Link>
-                    </div>
+                    (index + 1) % 3 === 0 ? (
+                        <PinLarge image={image} index={index}/>
+                    ) : (index + 1) % 2 === 0 ? (
+                        <PinMedium image={image} index={index}/>
+                    ) : (
+                        <PinSmall image={image} index={index}/>
+                    )
                 )}
             </div>
         </>

@@ -1,4 +1,14 @@
-#collection-gallery a {
+#board-gallery a {
     text-decoration: none;
     color: black
+}
+
+#board-gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, 254px);
+    grid-auto-rows: 10px;
+}
+
+.collection-card {
+    grid-row-end: span 24
 }
