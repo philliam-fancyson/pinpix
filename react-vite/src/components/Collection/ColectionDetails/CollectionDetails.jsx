@@ -8,7 +8,6 @@ import { thunkGetCollectionDetails } from "../../../redux/collection";
 import { thunkGetCollectionImages } from "../../../redux/image";
 import PinSmall from "../../PinCard/PinSmall";
 import PinMedium from "../../PinCard/PinMedium";
-import PinLarge from "../../PinCard/PinLarge";
 import './CollectionDetails.css'
 
 export default function CollectionDetails() {
@@ -65,9 +64,7 @@ export default function CollectionDetails() {
                 )}
             <div id="collection-gallery">
                 {collectionImages && collectionImages.map((image, index) =>
-                    (index + 1) % 3 === 0 ? (
-                        <PinLarge image={image} index={index}/>
-                    ) : (index + 1) % 2 === 0 ? (
+                    (index + 1) % 2 === 0 ? (
                         <PinMedium image={image} index={index}/>
                     ) : (
                         <PinSmall image={image} index={index}/>

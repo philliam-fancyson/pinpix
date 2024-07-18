@@ -34,9 +34,7 @@ function Main() {
         <>
             <div className="landing-grid">
             {latestImages && latestImages.map((image, index) =>
-                (index + 1) % 3 === 0 ? (
-                    <PinLarge image={image} index={index}/>
-                ) : (index + 1) % 2 === 0 ? (
+                (index + 1) % 2 === 0 ? (
                     <PinMedium image={image} index={index}/>
                 ) : (
                     <PinSmall image={image} index={index}/>
