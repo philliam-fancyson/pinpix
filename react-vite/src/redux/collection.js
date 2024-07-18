@@ -1,5 +1,6 @@
 const GET_COLLECTIONS = `collection/getCollections`
 const GET_COLLECTION = `collection/getCollection`
+const ADD_COLLECTION = `collection/addCollection`
 const UPDATE_COLLECTION = `collection/updateCollection`
 const DELETE_COLLECTION = `collection/deleteCollection`
 
@@ -10,6 +11,11 @@ const getCollections = (collections) => ({
 
 const getOneCollection = (collection) => ({
     type: GET_COLLECTION,
+    collection
+})
+
+const createCollection = (collection) => ({
+    type: ADD_COLLECTION,
     collection
 })
 
@@ -71,6 +77,31 @@ export const thunkGetCollectionDetails = (title) => async (dispatch) => {
     }
 }
 
+export const thunkCreateCollection = (payload) => async (dispatch) => {
+    try {
+        const response = await fetch("/api/collections/create", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(payload),
+          });
+
+          if (response.ok) {
+            const collection = await response.json();
+            collection.images = [];
+            return dispatch(createCollection(collection));
+          } else if (response.status < 500) {
+            const errorMessages = await response.json();
+            return errorMessages;
+          } else {
+            return { server: "Something went wrong. Please try again" };
+          }
+    } catch (err) {
+        return err
+    }
+}
+
 export const thunkUpdateCollectionDetails = (id, payload) => async (dispatch) => {
     const response = await fetch(`/api/collections/boards/${id}`, {
         method: "PUT",
@@ -108,6 +139,13 @@ const collectionReducer = (state = initialState, action) => {
             return {...state, collections: action.collections}
         case GET_COLLECTION:
             return {...state, collection: action.collection}
+        case ADD_COLLECTION:
+            newState = {
+                ...state,
+                collections: [action.collection, ...state.collections],
+                collection: action.collection
+            }
+            return newState;
         case UPDATE_COLLECTION:
             newState = {
                 ...state,

@@ -15,6 +15,7 @@ function CreateImage() {
     const [previewImg, setPreviewImg] = useState("")
     const sessionUser = useSelector(state => state.session.user);
 
+    // * Show Image Preview
     useEffect(() => {
         if (!image) {
             setPreviewImg("")
