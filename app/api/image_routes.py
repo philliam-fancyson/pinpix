@@ -14,6 +14,10 @@ def get_all_images():
 def get_one_image(id):
     return jsonify(ImageUtils.get_one_image(id))
 
+@image_routes.route("/user-uploaded", methods=["GET"])
+def get_user_images():
+    return jsonify(ImageUtils.get_user_uploads())
+
 @image_routes.route("/<int:id>", methods=["PUT"])
 @login_required
 def update_one_image(id):

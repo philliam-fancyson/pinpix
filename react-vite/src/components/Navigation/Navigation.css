@@ -1,6 +1,6 @@
 .profile-dropdown {
   position: absolute;
-  right: 1em;
+  right: 1.5em;
   top: 3em;
   background-color: white;
   border: 1px solid black;
@@ -12,11 +12,11 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-
-
   margin-bottom: 20px;
   height: fit-content;
   width: 100%;
+  border-bottom: 1px solid lightgray;
+  padding: 15px 0px;
 }
 
 #navbar-right ul {
@@ -31,6 +31,7 @@
 }
 
 #navbar-left {
+  margin-left:20px;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -49,7 +50,7 @@
   display: inline-flex;
   align-items: center;
   justify-content: flex-end;
-  margin-right: 50px;
+  margin-right: 20px;
 }
 
 #profile-button {

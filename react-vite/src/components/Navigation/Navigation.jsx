@@ -9,10 +9,9 @@ function Navigation() {
   return (
     <nav id="navbar">
       <div id="navbar-left">
-        <NavLink to="/">
-        {/* TODO: Logo HERE */}
-          <h3>PinPix</h3>
-        </NavLink>
+        {/* <NavLink to="/">
+        TODO: Logo HERE
+        </NavLink> */}
         <NavLink to="/">
         <button>Home</button>
         </NavLink>
@@ -33,7 +32,7 @@ function Navigation() {
       <div id="navbar-right">
         {user && (
               <NavLink to={`/boards/${user.username}`}>
-                <button>Collection</button>
+                <button>Boards</button>
               </NavLink>
           )}
         {<ProfileButton />}

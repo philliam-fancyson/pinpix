@@ -18,7 +18,6 @@ def get_collection_details(title):
 @collection_routes.route("/create", methods=["POST"])
 @login_required
 def create_collection():
-    print("******************WE HITTING*(*********)")
     req_body = request.get_json()
     try:
         return jsonify(CollectionUtils.create_collection(req_body))

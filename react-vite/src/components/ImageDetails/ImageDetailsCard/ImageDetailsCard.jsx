@@ -32,18 +32,21 @@ export default function ImageDetailsCard( {image, user} ) {
         <div className="details-card">
             <img src={image.image_url} />
             <div className="card-info">
+              <div className="card-info-top">
                 {isOwner && (
-                    <OpenModalButton
-                    buttonText="Edit"
-                    onButtonClick={closeMenu}
-                    modalComponent={<UpdateImageDetailsModal image={image}/>}
-                    />
+                  <OpenModalButton
+                  buttonText="Edit"
+                  onButtonClick={closeMenu}
+                  modalComponent={<UpdateImageDetailsModal image={image}/>}
+                  />
                 )}
-                <h1>{image.title}</h1>
-                <p>{image.description}</p>
-                <h2>{user.username}</h2>
-                <div>Comments go here</div>
-                <div>Comment and likes go here</div>
+                <button>Save</button>
+                </div>
+                <h2>{image.title}</h2>
+                {image.description && <p>{image.description}</p>}
+                <p>author: {user.username}</p>
+                {/* <div>COMMENTS PLACEHOLDER</div>
+                <div>COMMENT AND LIKES PLACEHOLDER</div> */}
             </div>
         </div>
     )

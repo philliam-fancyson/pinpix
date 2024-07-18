@@ -2,6 +2,7 @@ import { getUserInfo } from "./user"
 
 const GET_IMAGE = `image/getImage`
 const GET_IMAGES = 'image/getImages'
+const GET_USER_IMAGES= `image/getUserImage`
 const ADD_IMAGE = 'image/addImage'
 const UPDATE_IMAGE = 'image/updateImage'
 const DELETE_IMAGE = 'image/deleteImage'
@@ -14,6 +15,11 @@ const getImage = (image) => ({
 const getImages = (images) => ({
     type: GET_IMAGES,
     images
+})
+
+const getUserImages = (images) => ({
+  type: GET_USER_IMAGES,
+  images
 })
 
 const addImage = (image) => ({
@@ -60,6 +66,21 @@ export const getLatestImages = () => async (dispatch) => {
       return err;
     }
   };
+
+export const thunkGetUserUploadedImages = () => async (dispatch) => {
+  try {
+    const response = await fetch(`/api/images/user-uploaded`)
+    if (response.ok) {
+      const images = await response.json();
+      console.log(images)
+      dispatch(getUserImages(images))
+    } else {
+      throw new Error("failed to load user images");
+    }
+  } catch (err) {
+    return err
+  }
+}
 
 export const thunkGetCollectionImages = (title) => async (dispatch) => {
     title = title.replaceAll(" ", "-")
@@ -121,7 +142,7 @@ export const removeImage = (id) => async (dispatch) => {
 }
 
 // * Reducer
-const initialState = { images: [], image: {} }
+const initialState = { images: [], image: {}, userImages: [] }
 const imageReducer = (state = initialState, action) => {
     let newState = {}
     switch(action.type) {
@@ -129,6 +150,8 @@ const imageReducer = (state = initialState, action) => {
           return {...state, image: action.image}
         case GET_IMAGES:
           return { ...state, images: action.images}
+        case GET_USER_IMAGES:
+          return {...state, userImages: action.images}
         case ADD_IMAGE:
           newState = {
             ...state,

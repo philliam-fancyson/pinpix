@@ -37,7 +37,8 @@ form#login-form .floating-label {
     left: 20px;
     top: 18px;
     transition: 0.2s ease all;
-    color:black
+    color:black;
+    background-color: white;
   }
 
 form#login-form button {

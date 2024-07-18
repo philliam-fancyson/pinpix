@@ -3,31 +3,187 @@ from sqlalchemy.sql import text
 
 
 def seed_images():
-    images = []
+    user_1_images = []
 
-    image1 = Image(
-        title="Test 1",
+    u1_image1 = Image(
+        title="Tofu Car",
         image_url="https://pinpix-bucket.s3.us-west-1.amazonaws.com/1f406a2cbf3f45848c5c36fac2f56e32.jpg",
+        user_id="1",
+        description="dream car"
+        )
+    user_1_images.append(u1_image1)
+
+    u1_image2 = Image(
+        title="Totoro",
+        description="good vibes",
+        image_url="https://pinpix-bucket.s3.us-west-1.amazonaws.com/40022dd6f068451782cecd53150a9dc4.jpg",
         user_id="1"
         )
-    images.append(image1)
+    user_1_images.append(u1_image2)
 
-    image2 = Image(
-        title="Test 2",
-        image_url="https://pinpix-bucket.s3.us-west-1.amazonaws.com/40022dd6f068451782cecd53150a9dc4.jpg",
+    u1_image3 = Image(
+        title="Nice Style",
+        image_url="https://pinpix-bucket.s3.us-west-1.amazonaws.com/4d5e688442a94228a898b2119759f723.jpg",
+        user_id="1"
+        )
+    user_1_images.append(u1_image3)
+
+    for image in user_1_images:
+        db.session.add(image)
+
+    user_2_images = []
+    u2_image1 = Image(
+        title="Appa Stand",
+        description="appa meme",
+        image_url="https://pinpix-bucket.s3.us-west-1.amazonaws.com/846cbd96183446a9abba94b04227a7c5.jpg",
         user_id="2"
         )
-    images.append(image2)
+    user_2_images.append(u2_image1)
 
-    image3 = Image(
-        title="Test 3",
-        image_url="https://pinpix-bucket.s3.us-west-1.amazonaws.com/4d5e688442a94228a898b2119759f723.jpg",
+    u2_image2 = Image(
+        title="aesthetic bathub",
+        image_url="https://pinpix-bucket.s3.us-west-1.amazonaws.com/590cc647a78045419ef94e4d5df26a18.jpg",
+        user_id="2"
+        )
+    user_2_images.append(u2_image2)
+
+    u2_image3 = Image(
+        title="purp",
+        image_url="https://pinpix-bucket.s3.us-west-1.amazonaws.com/b26875ae166a47fe96bc3994e774c699.jpg",
+        user_id="2"
+        )
+    user_2_images.append(u2_image3)
+
+    u2_image4 = Image(
+        title="vintage",
+        image_url="https://pinpix-bucket.s3.us-west-1.amazonaws.com/aea40ae591204977aaa6092a350eea22.jpg",
+        user_id="2"
+        )
+    user_2_images.append(u2_image4)
+
+    u2_image5 = Image(
+        title="city-pop",
+        image_url="https://pinpix-bucket.s3.us-west-1.amazonaws.com/c782bf3a78ef4cd098c7f9d794c060d1.jpg",
+        user_id="2"
+        )
+    user_2_images.append(u2_image5)
+
+    # Adding user 1 breaks flow
+    u1_image4 = Image(
+        title="tofu-car",
+        image_url="https://pinpix-bucket.s3.us-west-1.amazonaws.com/5e33aa72ff724f30b057ab638ae20f45.jpg",
+        user_id="1"
+        )
+    user_2_images.append(u1_image4)
+
+    u1_image5 = Image(
+        title="jacket",
+        image_url="https://pinpix-bucket.s3.us-west-1.amazonaws.com/cf9be712a9b4430fba6e1175a6696ed8.jpg",
+        user_id="1"
+        )
+    user_2_images.append(u1_image5)
+
+    for image in user_2_images:
+        db.session.add(image)
+
+    user_3_images = []
+
+    u3_image1 = Image(
+        title="retro-playstation",
+        image_url="https://pinpix-bucket.s3.us-west-1.amazonaws.com/002f51a2ec034b6a87caf8a3fa190664.jpg",
         user_id="3"
         )
-    images.append(image3)
+    user_3_images.append(u3_image1)
 
-    for image in images:
+    u3_image2 = Image(
+        title="city hunter",
+        image_url="https://pinpix-bucket.s3.us-west-1.amazonaws.com/8ac127ff77194dd78fd3ff161ec0c9a5.jpg",
+        user_id="3"
+        )
+    user_3_images.append(u3_image2)
+
+    #Adding user 4 to break up flow
+    u4_image1 = Image(
+        title="beach up",
+        image_url="https://pinpix-bucket.s3.us-west-1.amazonaws.com/cb298b0dbbb44da8a4889f133c5c4baf.jpg",
+        user_id="4"
+        )
+    user_3_images.append(u4_image1)
+
+    u4_image2 = Image(
+        title="vibes dude",
+        image_url="https://pinpix-bucket.s3.us-west-1.amazonaws.com/04313099bee046ec9d7e9a2bafd4fd5f.jpg",
+        user_id="4"
+        )
+    user_3_images.append(u4_image2)
+
+    u4_image3 = Image(
+        title="coastal vibes",
+        image_url="https://pinpix-bucket.s3.us-west-1.amazonaws.com/aa248803e0184bc38cbb4ce036317622.jpg",
+        user_id="4"
+        )
+    user_3_images.append(u4_image3)
+
+    u4_image5 = Image(
+        title="coastal vibes 2",
+        image_url="https://pinpix-bucket.s3.us-west-1.amazonaws.com/2e1d4ed5c9634de689cf7de341617716.jpg",
+        user_id="4"
+        )
+    user_3_images.append(u4_image5)
+
+    # User 1 breaks user 4 flow
+    u1_image6 = Image(
+        title="rally car",
+        image_url="https://pinpix-bucket.s3.us-west-1.amazonaws.com/855cb813bc0f4cd7af27e3d3bdcf1dfc.jpg",
+        user_id="1"
+        )
+    user_3_images.append(u1_image6)
+
+    #User2 breawks user 1 flow
+    u2_image6 = Image(
+        title="aesthetics",
+        image_url="https://pinpix-bucket.s3.us-west-1.amazonaws.com/cea15a6173f64fb791070ad86b0308f2.jpg",
+        user_id="2"
+        )
+    user_3_images.append(u2_image6)
+
+    u4_image6 = Image(
+        title="coastal vibes 3",
+        image_url="https://pinpix-bucket.s3.us-west-1.amazonaws.com/c0893791a63641f3810f5f73f11abe4f.jpg",
+        user_id="4"
+        )
+    user_3_images.append(u4_image6)
+
+    for image in user_3_images:
         db.session.add(image)
+
+    user_5_images = []
+
+    u5_image1 = Image(
+        title="cute outfit",
+        image_url="https://pinpix-bucket.s3.us-west-1.amazonaws.com/d967352764bc4d7e8037af5b496b59e5.jpg",
+        user_id="5"
+        )
+    user_5_images.append(u5_image1)
+
+    u5_image2 = Image(
+        title="pasture vibes",
+        image_url="https://pinpix-bucket.s3.us-west-1.amazonaws.com/cf29b0f2b65f4ab09e03785cd632d705.jpg",
+        user_id="5"
+        )
+    user_5_images.append(u5_image2)
+
+    u1_image7 = Image(
+        title="stylish",
+        image_url="https://pinpix-bucket.s3.us-west-1.amazonaws.com/d471a3f4250f4f2297dad20b19d1c71b.jpg",
+        user_id="1"
+        )
+
+    user_5_images.append(u1_image7)
+
+    for image in user_5_images:
+        db.session.add(image)
+
     db.session.commit()
 
 

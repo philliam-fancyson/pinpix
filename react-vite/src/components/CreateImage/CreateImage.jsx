@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { addNewImage } from "../../redux/image";
+import './CreateImage.css'
 
 // const TAGS = ["Cyberpunk", "Vaporwave", "Solarpunk", "Cottagecore", "Vintage-Anime", "2000s", 'Skater"', "Beach", "7 Eleven ", "StreetWear"]
 
@@ -46,15 +47,13 @@ function CreateImage() {
     }
 
     return (
-        <>
-            <h1>Test</h1>
+        <div id="create-form">
+            <h1>Create Pin</h1>
             <form
             onSubmit={handleSubmit}
             encType="multipart/form-data"
             >
-                <label>
-                    file
-                    <input type="button" id="file-button" value="Test Upload" onClick={() => document.getElementById('file-button-hidden').click()} />
+                    <input type="button" id="file-button" value="Upload your file" onClick={() => document.getElementById('file-button-hidden').click()} />
                     <input
                     type="file"
                     id="file-button-hidden"
@@ -63,28 +62,28 @@ function CreateImage() {
                     style={{"display":"none"}}
                     />
                     { image && <img src={previewImg}/> }
-                </label>
                 <label>
-                    title
+                    Title
+                </label>
                     <input
                     type="text"
                     value={title}
                     onChange={(e) => setTitle(e.target.value)}
                     required
                     />
-                </label>
                 <label>
-                    description
+                   Description
+                </label>
                     <textarea
                     type="textarea"
                     value={description}
                     onChange={(e)=> setDescription(e.target.value)}
                     />
-                </label>
+
                 <button type="submit">Submit</button>
             {(imageLoading)&& <p>Loading...</p>}
             </form>
-        </>
+        </div>
     )
 }
 

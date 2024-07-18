@@ -49,6 +49,11 @@ class ImageUtils:
         return list({x["id"]: x for x in all_images}.values())
 
     @staticmethod
+    def get_user_uploads():
+        user_images = Image.query.filter(Image.user_id == UserUtils.get_current_user()["id"]).order_by(Image.id.desc())
+        return list(map(lambda x: ImageUtils.parse_data(x), user_images))
+
+    @staticmethod
     def create_new_image(data):
         """Create a new image """
         new_image = Image(

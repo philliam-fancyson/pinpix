@@ -6,19 +6,19 @@ def seed_collections():
     collections = []
 
     collection1 = Collection(
-        title="Collection Test 1",
+        title="my personal collection",
         user_id="1"
         )
     collections.append(collection1  )
 
-    collecion2 = Collection(
-        title="Collection Test 2",
+    collection2 = Collection(
+        title="styles",
         user_id="1"
         )
-    collections.append(collecion2)
+    collections.append(collection2)
 
     collection3 = Collection(
-        title="Collection Test 3",
+        title="city pop vibes",
         user_id="3"
         )
     collections.append(collection3)
@@ -63,7 +63,14 @@ def seed_collection_images():
     db.session.execute(insert(collection_images),
                        [
                            {"collection_id": 1, "image_id": 1},
-                           {"collection_id": 1, "image_id": 2}
+                           {"collection_id": 1, "image_id": 2},
+                           {"collection_id": 1, "image_id": 15},
+                           {"collection_id": 1, "image_id": 17},
+                           {"collection_id": 2, "image_id": 3},
+                           {"collection_id": 2, "image_id": 10},
+                           {"collection_id": 2, "image_id": 20},
+                           {"collection_id": 2, "image_id": 21},
+                           {"collection_id": 2, "image_id": 22},
                        ],
                        )
     db.session.commit()

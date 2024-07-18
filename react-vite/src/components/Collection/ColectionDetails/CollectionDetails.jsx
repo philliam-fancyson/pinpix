@@ -65,9 +65,9 @@ export default function CollectionDetails() {
             <div id="collection-gallery">
                 {collectionImages && collectionImages.map((image, index) =>
                     (index + 1) % 2 === 0 ? (
-                        <PinMedium image={image} index={index}/>
+                        <PinMedium image={image} index={index} key={index}/>
                     ) : (
-                        <PinSmall image={image} index={index}/>
+                        <PinSmall image={image} index={index} key={index}/>
                     )
                 )}
             </div>

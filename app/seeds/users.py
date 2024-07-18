@@ -17,6 +17,27 @@ def seed_users():
         first_name="Luna",
         last_name="Lovegood"
         )
+    softboi = User(
+        username="inMyFeels",
+        email='keshi-fan@email.io',
+        password='password',
+        first_name="Kevin",
+        last_name="Nguyen"
+    )
+    surfer = User(
+        username="wavecatcher",
+        email='islandboy@email.io',
+        password='password',
+        first_name="Granola",
+        last_name="Kyle"
+    )
+    sansa = User(
+        username="QueenOfTheNorth",
+        email="Sansa@email.io",
+        password="password",
+        first_name="Sansa",
+        last_name="Stark"
+        )
     peter = User(
         username='NYCWallCrawler',
         email='spider-man@aa.io',
@@ -27,6 +48,9 @@ def seed_users():
 
     db.session.add(demo)
     db.session.add(luna)
+    db.session.add(softboi)
+    db.session.add(surfer)
+    db.session.add(sansa)
     db.session.add(peter)
     db.session.commit()
 

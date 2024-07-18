@@ -4,6 +4,7 @@ import { useParams } from "react-router-dom";
 import { getOneImage } from "../../redux/image";
 import ImageDetailsCard from "./ImageDetailsCard/ImageDetailsCard";
 import { getUserInfo } from "../../redux/user";
+import "./ImageDetails.css"
 
 export default function ImageDetails() {
     const dispatch = useDispatch()
@@ -22,8 +23,8 @@ export default function ImageDetails() {
 
     if (!image) return <p>Loading</p>
     return (
-        <>
+        <div id="details">
             <ImageDetailsCard image={image} user={imageUser}/>
-        </>
+        </ div>
     )
 }

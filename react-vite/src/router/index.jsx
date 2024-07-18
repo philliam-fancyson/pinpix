@@ -7,6 +7,7 @@ import CreateImage from '../components/CreateImage/CreateImage';
 import ImageDetails from '../components/ImageDetails/ImageDetails';
 import ShowCollections from '../components/Collection/ShowCollections/ShowCollections';
 import CollectionDetails from '../components/Collection/ColectionDetails/CollectionDetails';
+import UploadedDetails from '../components/Collection/ColectionDetails/UploadedDetails';
 
 export const router = createBrowserRouter([
   {
@@ -35,6 +36,10 @@ export const router = createBrowserRouter([
       {
         path: "/boards/:username",
         element: <ShowCollections />
+      },
+      {
+        path: "/boards/:username/all-uploads",
+        element: <UploadedDetails />
       },
       {
         path: "/boards/:username/:title",

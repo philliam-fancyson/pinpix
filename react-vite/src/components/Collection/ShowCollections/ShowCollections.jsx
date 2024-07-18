@@ -2,6 +2,7 @@ import { useState, useEffect, useRef } from "react"
 import { useParams} from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { thunkGetUserCollections } from "../../../redux/collection";
+import { thunkGetUserUploadedImages } from "../../../redux/image";
 import OpenModalButton from "../../OpenModalButton/OpenModalButton";
 import { useModal } from "../../../context/Modal";
 import CollectionCard from "../CollectionCard/CollectionCard";
@@ -13,7 +14,13 @@ export default function ShowCollections() {
     const { username } = useParams()
     // TODO Modify to get any user's collection maybe?
     const userCollections = useSelector(state => state.collection.collections)
+    const userImages = useSelector(state => state.image.userImages)
     const [showMenu, setShowMenu] = useState(false);
+
+    const uploadedCollection = {
+        title:"All Uploads",
+        images: userImages
+    }
 
     // * Modal Components
     useEffect(() => {
@@ -37,6 +44,10 @@ export default function ShowCollections() {
         dispatch(thunkGetUserCollections())
     },[dispatch])
 
+    useEffect(() => {
+        dispatch(thunkGetUserUploadedImages())
+    }, [dispatch])
+
     if (!userCollections) return <div>Loading...</div>
 
     return (
@@ -48,6 +59,7 @@ export default function ShowCollections() {
             modalComponent={<CreateCollectionModal />}
             />
             <div id="board-gallery">
+                <CollectionCard collection={uploadedCollection} username={username} />
                 {userCollections && userCollections.map((collection, index) =>
                     <CollectionCard collection={collection} username={username} key={index}/>
                 )}
