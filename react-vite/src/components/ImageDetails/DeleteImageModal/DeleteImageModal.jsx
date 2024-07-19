@@ -2,9 +2,10 @@ import { useState, useEffect, useRef } from "react"
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import OpenModalButton from "../../OpenModalButton/OpenModalButton";
-import UpdateImageDetailsModal from "../UpdateImageDetails/UpdateImageDetailsModal"
+import UpdateImageDetailsModal from "../UpdateImageDetailsModal/UpdateImageDetailsModal"
 import { useModal } from "../../../context/Modal";
 import { removeImage } from "../../../redux/image";
+import "./DeleteImageModal.css"
 
 export default function DeleteImageModal( {image} ) {
     const navigate = useNavigate();
@@ -40,12 +41,15 @@ export default function DeleteImageModal( {image} ) {
     return (
         <div className="delete-modal">
             <h1>Are you sure?</h1>
-            <OpenModalButton
-            buttonText="Cancel"
-            onButtonClick={closeMenu}
-            modalComponent={<UpdateImageDetailsModal image={image}/>}
-            />
-            <button onClick={onClick}>Delete</button>
+            <p>Once you delete a Pin, you can&apos;t undo it!</p>
+            <div id="delete-button">
+              <OpenModalButton
+              buttonText="Cancel"
+              onButtonClick={closeMenu}
+              modalComponent={<UpdateImageDetailsModal image={image}/>}
+              />
+              <button onClick={onClick}>Delete</button>
+            </div>
         </div>
     )
 }

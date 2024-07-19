@@ -1,0 +1,35 @@
+#create-board-modal {
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 500px;
+    height: 300px;
+    border-radius: 25px;
+    margin-bottom: 20px;
+}
+
+#create-board-modal form {
+    display: flex;
+    flex-direction: column;
+    width: 80%
+}
+
+#create-board-modal input {
+    width: 98%
+}
+
+#create-buttons {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-between;
+    margin-top: 10px;
+}
+
+.form-errors {
+    min-height: 20px;
+}
+
+#create-board-modal h2 {
+    margin: 5px 0px;
+}

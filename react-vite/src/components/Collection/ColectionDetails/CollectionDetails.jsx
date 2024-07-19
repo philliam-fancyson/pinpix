@@ -54,16 +54,26 @@ export default function CollectionDetails() {
     if (!collection) return <p>Loading</p>
     return (
         <>
-            <h1>{collection.title}</h1>
-            <p>{collection.description}</p>
-            {isOwner && (
+            <div id="board-header">
+                <h1>{collection.title}</h1>
+                <p>{collection.description}</p>
+
+                {isOwner && (
                     <OpenModalButton
                     buttonText="Edit"
                     onButtonClick={closeMenu}
                     modalComponent={<UpdateCollectionModal collection={collection}/>}
                     />
                 )}
+            </div>
+            <div id="gallery-header">
+                    <h2>{collection.images?.length} Pins</h2>
+            </div>
             <div id="collection-gallery">
+
+                {collection.images?.length === 0 &&
+                    <p>There aren&apos;t any Pins on this board yet</p>
+                }
                 {collectionImages && collectionImages.map((image, index) =>
                     (index + 1) % 2 === 0 ? (
                         <PinMedium image={image} index={index} key={index} collectionView={true} collectionId={collection.id}/>

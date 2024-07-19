@@ -1,0 +1,14 @@
+.delete-modal {
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 500px;
+    height: 200px;
+    border-radius: 25px;
+    margin-bottom: 20px;
+}
+
+#delete-button button {
+    margin: 0px 10px;
+}

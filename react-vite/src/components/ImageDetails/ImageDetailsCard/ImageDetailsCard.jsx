@@ -1,7 +1,7 @@
 import { useState, useRef, useEffect} from "react";
 import { useSelector, useDispatch } from "react-redux";
 import OpenModalButton from "../../OpenModalButton/OpenModalButton";
-import UpdateImageDetailsModal from "../UpdateImageDetails/UpdateImageDetailsModal";
+import UpdateImageDetailsModal from "../UpdateImageDetailsModal/UpdateImageDetailsModal";
 import { thunkAddImageToCollection, thunkGetUserCollections } from "../../../redux/collection";
 import Select from 'react-select'
 import makeAnimated from "react-select/animated";

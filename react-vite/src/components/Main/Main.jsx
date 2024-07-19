@@ -22,9 +22,6 @@ function Main() {
 
     if (!user?.id) return (
         <>
-            <div>
-                LandingPageComponent
-            </div>
             <SignupFormPage />
         </>
     )

@@ -11,6 +11,8 @@ export default function UpdateImageDetailsModal({image}) {
     const { closeModal } = useModal();
     const [title, setTitle] = useState(image.title ? image.title : "")
     const [description, setDescription] = useState(image.description ? image.description : "")
+    const [validationErrors, setValidationErrors] = useState({})
+    const [hasSubmitted, setHasSubmitted] = useState(false)
     const [showMenu, setShowMenu] = useState(false);
     const ulRef = useRef();
 
@@ -32,8 +34,17 @@ export default function UpdateImageDetailsModal({image}) {
     const closeMenu = () => setShowMenu(false);
     // * Modal Components End
 
+    useEffect(() => {
+        const errors = {};
+        if (!title.length) errors.title = "Title is required"
+
+        setValidationErrors(errors)
+    }, [title])
+
     const handleSubmit = async (e) => {
         e.preventDefault();
+        setHasSubmitted(true);
+        if (Object.values(validationErrors).length) return;
         const payload = {
             title,
             description
@@ -55,6 +66,7 @@ export default function UpdateImageDetailsModal({image}) {
                     onChange={(e) => setTitle(e.target.value)}
                     placeholder="Add a title"
                     />
+                    <div className="form-errors">{hasSubmitted && validationErrors.title}</div>
                 </label>
                 <label>
                     <h2>Description</h2>
@@ -65,12 +77,17 @@ export default function UpdateImageDetailsModal({image}) {
                     placeholder="Write a detailed description for your Pin"
                     />
                 </label>
-                <OpenModalButton
-                buttonText="Delete"
-                onButtonClick={closeMenu}
-                modalComponent={<DeleteImageModal image={image}/>}
-                />
-                <button type="submit">Save</button>
+                <div id="update-button">
+                    <OpenModalButton
+                    buttonText="Delete"
+                    onButtonClick={closeMenu}
+                    modalComponent={<DeleteImageModal image={image}/>}
+                    />
+                    <div id="update-safe">
+                        <button type="button" onClick={closeModal}>Cancel</button>
+                        <button type="submit">Save</button>
+                    </div>
+            </div>
             </form>
         </div>
     )

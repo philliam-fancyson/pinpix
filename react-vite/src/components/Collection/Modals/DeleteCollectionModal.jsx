@@ -14,6 +14,8 @@ export default function DeleteCollectionModals(  {collection} ) {
     const { closeModal } = useModal();
     const ulRef = useRef();
 
+    console.log(collection)
+
     // * Modal Components
     useEffect(() => {
         if (!showMenu) return;
@@ -40,13 +42,16 @@ export default function DeleteCollectionModals(  {collection} ) {
 
     return (
         <div className="delete-modal">
-            <h1>Are you sure?</h1>
-            <OpenModalButton
-            buttonText="Cancel"
-            onButtonClick={closeMenu}
-            modalComponent={<UpdateCollectionModal collection={collection}/>}
-            />
-            <button onClick={onClick}>Delete</button>
+            <h1>Delete this board?</h1>
+            <p>This board and {collection.images.length} Pins will be removed from your profile.</p>
+            <div id="delete-button">
+                <OpenModalButton
+                buttonText="Cancel"
+                onButtonClick={closeMenu}
+                modalComponent={<UpdateCollectionModal collection={collection}/>}
+                />
+                <button onClick={onClick}>Delete</button>
+            </div>
         </div>
     )
 }
