@@ -43,7 +43,7 @@ export default function CollectionCard({collection, username}) {
             </div>
             <div className="collection-info">
                 <h2>{collection.title}</h2>
-                <span>{imageCount} Pins</span>
+                <span>{imageCount} {imageCount === 1 ? "Pin" : "Pin"}</span>
             </div>
             </NavLink>
         </div>
