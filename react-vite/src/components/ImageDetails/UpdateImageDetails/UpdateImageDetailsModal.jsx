@@ -62,7 +62,7 @@ export default function UpdateImageDetailsModal({image}) {
                     type="text"
                     value={description}
                     onChange={(e) => setDescription(e.target.value)}
-                    placeholder="Write a detailed decsription for your Pin"
+                    placeholder="Write a detailed description for your Pin"
                     />
                 </label>
                 <OpenModalButton

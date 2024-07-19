@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react"
-import { NavLink, useParams } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import './CollectionCard.css'
 
 export default function CollectionCard({collection, username}) {
@@ -19,7 +19,7 @@ export default function CollectionCard({collection, username}) {
         if (collection.images.length >= 3) {
             setBottomImage(true)
         }
-    },)
+    },[collection.images.length])
 
     return (
         <div className="collection-card">

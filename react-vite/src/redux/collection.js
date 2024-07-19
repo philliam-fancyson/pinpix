@@ -1,8 +1,12 @@
+import { deleteImage } from "./image"
+
 const GET_COLLECTIONS = `collection/getCollections`
 const GET_COLLECTION = `collection/getCollection`
 const ADD_COLLECTION = `collection/addCollection`
 const UPDATE_COLLECTION = `collection/updateCollection`
 const DELETE_COLLECTION = `collection/deleteCollection`
+// const ADD_TO_COLLECTION = `collection/addImageToCollection`
+const REMOVE_FROM_COLLECTION = `collection/removeImageFromCollection`
 
 const getCollections = (collections) => ({
     type: GET_COLLECTIONS,
@@ -27,6 +31,16 @@ const updateCollection = (collection) => ({
 const deleteCollection = (collectionId) => ({
     type: DELETE_COLLECTION,
     collectionId
+})
+
+// const addToCollection = (image) => ({
+//     type: ADD_TO_COLLECTION,
+//     image
+// })
+
+const removeFromCollection = (imageId) => ({
+    type: REMOVE_FROM_COLLECTION,
+    imageId
 })
 
 // * Thunks
@@ -130,10 +144,42 @@ export const removeCollection = (id) => async (dispatch) => {
     }
   }
 
+export const thunkAddImageToCollection = (id, imageId) => async () => {
+    const response = await fetch(`/api/collections/boards/${id}/images`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({imageId: imageId})
+      });
+    if (response.ok) {
+        return true
+    } else {
+        throw new Error("failed to add collection");
+    }
+}
+
+export const thunkRemoveImageFromCollection = (id, imageId) => async (dispatch) => {
+    const response = await fetch(`/api/collections/boards/${id}/images`, {
+        method: "Delete",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({imageId})
+      });
+    if (response.ok) {
+        dispatch(removeFromCollection(imageId))
+        dispatch(deleteImage(imageId))
+    } else {
+        throw new Error("failed to add collection");
+    }
+}
+
 // * Reducer
 const initialState = { collections: [], collection: {}}
 const collectionReducer = (state = initialState, action) => {
     let newState = {}
+    let currCollection;
     switch(action.type) {
         case GET_COLLECTIONS:
             return {...state, collections: action.collections}
@@ -157,6 +203,15 @@ const collectionReducer = (state = initialState, action) => {
                 ...state,
                 collections: state.collections.filter(collection => collection.id !== action.collectionId),
                 collection: {}
+            }
+            return newState
+
+        case REMOVE_FROM_COLLECTION:
+            currCollection = {...state.collection}
+            currCollection.images = state.collection.images.filter(image => image.id !== action.imageId)
+            newState = {
+                ...state,
+                collection: currCollection
             }
             return newState
         default:

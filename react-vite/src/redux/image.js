@@ -32,7 +32,7 @@ const updateImage = (image) => ({
   image
 })
 
-const deleteImage = (imageId) => ({
+export const deleteImage = (imageId) => ({
   type: DELETE_IMAGE,
   imageId
 })

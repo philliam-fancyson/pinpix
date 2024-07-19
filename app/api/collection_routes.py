@@ -53,6 +53,7 @@ def get_collection_images(title):
 @collection_routes.route("/boards/<int:id>/images", methods=["POST"])
 @login_required
 def add_image_to_collection(id):
+    print("ROUTE HIT")
     try:
         image_id = request.get_json()['imageId']
         return jsonify(CollectionUtils.add_to_collection(id, image_id))

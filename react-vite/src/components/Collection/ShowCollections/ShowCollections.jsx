@@ -4,7 +4,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { thunkGetUserCollections } from "../../../redux/collection";
 import { thunkGetUserUploadedImages } from "../../../redux/image";
 import OpenModalButton from "../../OpenModalButton/OpenModalButton";
-import { useModal } from "../../../context/Modal";
 import CollectionCard from "../CollectionCard/CollectionCard";
 import './ShowCollection.css'
 import CreateCollectionModal from "../Modals/CreateCollectionModal";
@@ -16,6 +15,7 @@ export default function ShowCollections() {
     const userCollections = useSelector(state => state.collection.collections)
     const userImages = useSelector(state => state.image.userImages)
     const [showMenu, setShowMenu] = useState(false);
+    const ulRef = useRef();
 
     const uploadedCollection = {
         title:"All Uploads",

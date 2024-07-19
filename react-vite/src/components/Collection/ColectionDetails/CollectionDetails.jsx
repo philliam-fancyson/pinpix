@@ -1,6 +1,6 @@
-import { useState, useRef, useEffect} from "react";
+import { useState, useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams, Link } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import OpenModalButton from "../../OpenModalButton/OpenModalButton";
 import UpdateCollectionModal from "../Modals/UpdateCollectionModal";
 import { getUserInfo } from "../../../redux/user";
@@ -19,6 +19,7 @@ export default function CollectionDetails() {
     const sessionUser = useSelector(state => state.session.user)
     const [showMenu, setShowMenu] = useState(false);
     const isOwner = sessionUser.id === collectionUser.id
+    const ulRef = useRef();
 
     useEffect(() => {
         dispatch(thunkGetCollectionDetails(title))
@@ -65,9 +66,9 @@ export default function CollectionDetails() {
             <div id="collection-gallery">
                 {collectionImages && collectionImages.map((image, index) =>
                     (index + 1) % 2 === 0 ? (
-                        <PinMedium image={image} index={index} key={index}/>
+                        <PinMedium image={image} index={index} key={index} collectionView={true} collectionId={collection.id}/>
                     ) : (
-                        <PinSmall image={image} index={index} key={index}/>
+                        <PinSmall image={image} index={index} key={index} collectionView={true} collectionId={collection.id}/>
                     )
                 )}
             </div>

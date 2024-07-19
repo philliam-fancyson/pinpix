@@ -214,6 +214,16 @@ class CollectionUtils:
         # ? Maybe add a constraint that only adds if it is unique
         # TODO check if it exists
         # TODO check if user is owner of collection
+        image_exist = Image.query \
+                    .join(collection_images) \
+                    .filter(
+                        collection_images.c.collection_id == id,
+                        collection_images.c.image_id ==  image_id
+                        ) \
+                    .order_by(Image.id.desc()) \
+                    .options(joinedload(Image.collection_images)).first()
+        if image_exist:
+            return True
         try:
             db.session.execute(insert(collection_images), {"collection_id": id, "image_id": image_id})
             db.session.commit()

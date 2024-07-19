@@ -15,3 +15,33 @@
   .card-large {
     grid-row-end: span 45
   }
+
+  .collection-card-small {
+    grid-row-end: span 30
+  }
+
+  .collection-card-medium {
+    grid-row-end: span 37
+  }
+
+  #collection-gallery .collection-card-medium img {
+    max-height: 90%
+  }
+
+  #collection-gallery .collection-card-small img {
+    max-height: 90%
+  }
+
+  #collection-gallery p {
+    margin: 0px;
+  }
+
+  #collection-gallery img {
+    border-radius: 20px
+  }
+
+  .card-bottom {
+    margin: 0px 5px;
+    display: flex;
+    justify-content: space-between;
+  }

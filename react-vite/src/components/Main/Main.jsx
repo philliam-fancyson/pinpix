@@ -1,20 +1,19 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 import "./Main.css";
 // import LoginFormPage from "../LoginFormPage";
 import SignupFormPage from "../SignupFormPage";
 import { getLatestImages } from "../../redux/image";
 import PinSmall from "../PinCard/PinSmall";
 import PinMedium from "../PinCard/PinMedium";
-import PinLarge from "../PinCard/PinLarge";
+// import PinLarge from "../PinCard/PinLarge";
 
 
 function Main() {
     const dispatch = useDispatch();
     const latestImages = useSelector(state => state.image.images)
     const user = useSelector(state => state.session.user);
-    const changeType = "a"
 
     useEffect(() => {
         dispatch(getLatestImages())
