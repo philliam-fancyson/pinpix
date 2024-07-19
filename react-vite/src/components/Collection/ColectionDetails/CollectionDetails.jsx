@@ -67,7 +67,7 @@ export default function CollectionDetails() {
                 )}
             </div>
             <div id="gallery-header">
-                    <h2>{collection.images?.length} Pins</h2>
+                    <h2>{collection.images?.length} {collection.images?.length === 1 ? "Pin" : "Pins"}</h2>
             </div>
             <div id="collection-gallery">
 

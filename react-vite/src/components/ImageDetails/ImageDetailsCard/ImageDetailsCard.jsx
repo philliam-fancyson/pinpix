@@ -69,7 +69,6 @@ export default function ImageDetailsCard( {image, user} ) {
       e.preventDefault();
       dispatch(thunkAddImageToCollection(selectedCollection, image.id))
         .then(setSaveButton("Saved!"))
-
     }
 
 
