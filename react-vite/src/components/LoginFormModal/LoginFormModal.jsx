@@ -55,7 +55,9 @@ function LoginFormModal() {
             required
             className="login-input"
             />
-          <span className="floating-label">Email</span>
+          <span className="floating-label">
+            <p>Email</p>
+            </span>
         </label>
       </div>
       {errors.email && <p>{errors.email}</p>}
@@ -68,7 +70,9 @@ function LoginFormModal() {
             required
             className="login-input"
             />
-          <span className="floating-label">Password</span>
+            <span className="floating-label">
+              <p>Password</p>
+            </span>
         </label>
       </div>
       {errors.password && <p>{errors.password}</p>}
