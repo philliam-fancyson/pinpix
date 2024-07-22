@@ -72,7 +72,6 @@ export const thunkGetUserUploadedImages = () => async (dispatch) => {
     const response = await fetch(`/api/images/user-uploaded`)
     if (response.ok) {
       const images = await response.json();
-      console.log(images)
       dispatch(getUserImages(images))
     } else {
       throw new Error("failed to load user images");

@@ -14,8 +14,6 @@ export default function DeleteCollectionModals(  {collection} ) {
     const { closeModal } = useModal();
     const ulRef = useRef();
 
-    console.log(collection)
-
     // * Modal Components
     useEffect(() => {
         if (!showMenu) return;

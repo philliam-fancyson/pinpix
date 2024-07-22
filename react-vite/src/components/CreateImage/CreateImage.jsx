@@ -56,7 +56,6 @@ function CreateImage() {
         setImageLoading(true);
         let createdImage;
         createdImage = await dispatch(addNewImage(formData));
-        console.log(createdImage)
         navigate(`/pin/${createdImage.id}`);
     }
 

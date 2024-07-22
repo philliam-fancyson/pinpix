@@ -38,7 +38,6 @@ function SignupFormModal() {
     if (username.length < 5) errors.username = "Must be 5 or more characters"
     if (password.length < 8) errors.password = "Password must be at least 8 or more characters"
     if (password.length > 255) errors.password = "Password is too long!"
-    console.log(password.length)
     if (password !== confirmPassword) errors.password = "Confirm Password field must be the same as the Password field"
 
 
