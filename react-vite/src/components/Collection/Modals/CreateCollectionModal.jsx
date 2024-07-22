@@ -5,7 +5,7 @@ import { useModal } from "../../../context/Modal";
 import { thunkCreateCollection } from "../../../redux/collection";
 import './CollectionModal.css'
 
-export default function CreateCollectionModal() {
+export default function CreateCollectionModal({selectAdd}) {
     const navigate = useNavigate();
     const dispatch = useDispatch();
     const { closeModal } = useModal();
@@ -35,7 +35,9 @@ export default function CreateCollectionModal() {
         }
         dispatch(thunkCreateCollection(payload))
             .then(closeModal)
-        navigate(`/boards/${sessionUser.username}/${title}`)
+        if (!selectAdd) {
+            navigate(`/boards/${sessionUser.username}/${title}`)
+        }
     }
 
     return (

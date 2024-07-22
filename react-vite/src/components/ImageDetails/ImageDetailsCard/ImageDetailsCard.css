@@ -59,3 +59,21 @@
 #save-select {
     margin-right: 5px;
 }
+
+#select-button button{
+    cursor: default;
+    display: block;
+    font-size: inherit;
+    width: 100%;
+    background-color:white;
+    padding: 8px 12px;
+    box-sizing: border-box;
+}
+
+#select-button button:hover {
+    border: none;
+    border-radius: 0;
+    box-shadow: 0 0 5px lightgrey;
+    background-color: #DEEBFF;
+    cursor:pointer
+}

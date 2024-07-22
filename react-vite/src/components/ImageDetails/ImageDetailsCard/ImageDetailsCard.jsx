@@ -1,10 +1,11 @@
 import { useState, useRef, useEffect} from "react";
 import { useSelector, useDispatch } from "react-redux";
 import OpenModalButton from "../../OpenModalButton/OpenModalButton";
+import CreateCollectionModal from "../../Collection/Modals/CreateCollectionModal";
 import UpdateImageDetailsModal from "../UpdateImageDetailsModal/UpdateImageDetailsModal";
 import { thunkAddImageToCollection, thunkGetUserCollections } from "../../../redux/collection";
 import Select from 'react-select'
-import makeAnimated from "react-select/animated";
+import { components } from 'react-select';
 import './ImageDetailsCard.css'
 
 export default function ImageDetailsCard( {image, user} ) {
@@ -41,7 +42,21 @@ export default function ImageDetailsCard( {image, user} ) {
     }, [dispatch])
 
     // Select Components
-    const animatedComponents = makeAnimated();
+    const SelectMenuButton = (props) => {
+      return (
+          <components.MenuList  {...props}>
+              {props.children}
+              <div id="select-button">
+              <OpenModalButton
+                  buttonText="Create a board"
+                  onButtonClick={closeMenu}
+                  modalComponent={<CreateCollectionModal selectAdd={true}/>}
+                  />
+              </div>
+          </components.MenuList >
+      ) }
+
+
 
     const constructSelectOptions = (userCollections) => {
       const allOptions = Object.keys(userCollections).length
@@ -88,7 +103,7 @@ export default function ImageDetailsCard( {image, user} ) {
                   <div id="save-select">
                     <Select
                     options={selectOptions}
-                    component={animatedComponents}
+                    components={{MenuList: SelectMenuButton}}
                     onChange={(e) => {
                       handleSelect(e);
                     }}
