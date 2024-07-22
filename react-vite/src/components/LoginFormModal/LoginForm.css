@@ -25,10 +25,6 @@ form#login-form input:not(:focus):valid ~ .floating-label{
     opacity: 1;
 }
 
-span.floating-label p {
-    margin: 0px 4px;
-
-}
 
 form#login-form .input-box {
     display: inline-block;
@@ -43,8 +39,12 @@ form#login-form .floating-label {
     top: 20px;
     transition: 0.2s ease all;
     color:black;
-    background-color: white;
   }
+
+form#login-form .floating-label p {
+    background-color: white;
+    margin: 0px 4px;
+}
 
 form#login-form button {
     width: 150px;
@@ -93,4 +93,12 @@ form#login-form button {
 
 form#login-form button:hover {
     cursor: pointer;
+}
+
+.form-errors-login {
+    min-height: 24px;
+}
+
+.form-errors-login p {
+    margin:3px;
 }

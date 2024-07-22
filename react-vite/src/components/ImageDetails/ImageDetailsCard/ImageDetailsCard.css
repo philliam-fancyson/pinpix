@@ -39,3 +39,23 @@
     display: flex;
     justify-content: space-between;
 }
+
+.card-info-top button {
+    border: 1px solid rgba(0, 0, 0, 0);
+    border-radius: 1em;
+    background-color: white;
+    font-size: 1em;
+    box-sizing: border-box;
+    cursor: pointer;
+}
+
+.card-info-top button:hover {
+    border: 1px solid lightgrey;
+    border-radius: 1em;
+    box-shadow: 0 0 5px lightgrey;
+    background-color: lightgrey;
+}
+
+#save-select {
+    margin-right: 5px;
+}

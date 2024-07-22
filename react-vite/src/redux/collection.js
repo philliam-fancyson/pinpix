@@ -126,6 +126,8 @@ export const thunkUpdateCollectionDetails = (id, payload) => async (dispatch) =>
       });
       if (response.ok) {
         const collection = await response.json();
+        const images = await dispatch(helperThunkGetCollectionImages(collection.title))
+        collection.images = images
         return dispatch(updateCollection(collection))
       } else {
       throw new Error("failed to update collection");

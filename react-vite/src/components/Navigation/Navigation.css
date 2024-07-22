@@ -58,3 +58,65 @@
   border: 1px solid transparent;
   border-radius: 1em;
 }
+
+.nav-button {
+  padding: 0.5em 1em;
+  margin: 0px 0.5em;
+  border: 1px solid rgba(0, 0, 0, 0);
+  border-radius: 1em;
+  background-color: white;
+  font-size: 1em;
+  box-sizing: border-box;
+  cursor: pointer;
+}
+
+.nav-button:hover {
+  border: 1px solid lightgrey;
+  border-radius: 1em;
+  box-shadow: 0 0 5px lightgrey;
+  background-color: lightgrey;
+}
+
+.nav-button-modal button{
+  padding: 0.5em 1em;
+  margin: 0px 0.5em;
+  border: 1px solid rgba(0, 0, 0, 0);
+  border-radius: 1em;
+  background-color: white;
+  font-size: 1em;
+  box-sizing: border-box;
+  cursor: pointer;
+}
+
+.nav-button-modal button:hover {
+  border: 1px solid lightgrey;
+  border-radius: 1em;
+  box-shadow: 0 0 5px lightgrey;
+  background-color: lightgrey;
+}
+
+#profile-dropdown-menu {
+  border: 0px;
+  font-size: x-large;
+  background-color: white;
+}
+
+#profile-dropdown-menu svg:hover {
+  border-radius: 1em;
+  background-color: lightgrey;
+}
+
+.profile-dropdown button {
+  padding: 0.5em 1em;
+  margin: 0px 0.5em;
+  border: 1px solid lightgrey;
+  border-radius: 1em;
+  background-color: white;
+  font-size: 1em;
+  box-sizing: border-box;
+  cursor: pointer;
+}
+
+.profile-dropdown button:hover{
+  background-color: lightgrey;
+}

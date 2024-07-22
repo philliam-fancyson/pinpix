@@ -12,3 +12,24 @@
 .collection-card {
     grid-row-end: span 24
 }
+
+#board-header {
+    margin-bottom: 5px;
+}
+
+#board-header button {
+    margin: 0px 0.5em;
+    border: 1px solid rgba(0, 0, 0, 0);
+    border-radius: 1em;
+    background-color: rgb(233, 231, 231);
+    font-size: 1.2em;
+    box-sizing: border-box;
+    cursor: pointer;
+}
+
+#board-header button:hover {
+    border: 1px solid lightgrey;
+    border-radius: 1em;
+    box-shadow: 0 0 5px lightgrey;
+    background-color: lightgrey;
+  }

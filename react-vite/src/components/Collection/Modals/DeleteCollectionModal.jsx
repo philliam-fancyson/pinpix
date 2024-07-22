@@ -43,7 +43,7 @@ export default function DeleteCollectionModals(  {collection} ) {
     return (
         <div className="delete-modal">
             <h1>Delete this board?</h1>
-            <p>This board and {collection.images.length} {collection.images.length === 1 ? "pin" : "pins"} will be removed from your profile.</p>
+            <p>This board and {collection.images?.length} {collection.images?.length === 1 ? "pin" : "pins"} will be removed from your profile.</p>
             <div id="delete-button">
                 <OpenModalButton
                 buttonText="Cancel"

@@ -35,41 +35,41 @@ function Navigation() {
         TODO: Logo HERE
         </NavLink> */}
         <NavLink to="/">
-        <button>Home</button>
+        <button className="nav-button">Home</button>
         </NavLink>
-        <button onClick={() => {alert("Coming soon")}}>About</button>
+        <button className="nav-button" onClick={() => {alert("Coming soon")}}>About</button>
         {user && (
             <NavLink to="/create">
-              <button>Create</button>
+              <button className="nav-button">Create</button>
             </NavLink>
         )}
       </div>
       <div id="navbar-middle">
-        <form>
+        {/* <form>
           <input type="search" />
-        </form>
+        </form> */}
       </div>
       <div id="navbar-right">
         {user ? (
             <>
                 <NavLink to={`/boards/${user.username}`}>
-                  <button>Boards</button>
+                  <button className="nav-button">Boards</button>
                 </NavLink>
                 <ProfileButton />
             </>
           ) : (
-            <>
+            <div className="nav-button-modal">
               <OpenModalButton
                 buttonText="Login"
                 onButtonClick={closeMenu}
                 modalComponent={<LoginFormModal />}
-              />
+                />
               <OpenModalButton
                 buttonText="Sign Up"
                 onButtonClick={closeMenu}
                 modalComponent={<SignupFormModal />}
-              />
-            </>
+                />
+            </div>
           )}
 
         </div>

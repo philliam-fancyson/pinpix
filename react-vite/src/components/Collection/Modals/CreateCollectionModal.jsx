@@ -18,9 +18,11 @@ export default function CreateCollectionModal() {
     useEffect(() => {
         const errors = {};
         if (!title.length) errors.title = "Name is required"
+        if (title.length > 50)  errors.title = "Name is too long!"
+        if (description.length > 2000) errors.description = "Description too long!"
 
         setValidationErrors(errors)
-    }, [title])
+    }, [title, description])
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -54,13 +56,14 @@ export default function CreateCollectionModal() {
                 </label>
                 <label>
                     <h2>Description</h2>
-                    <input
-                    type="text"
+                    <textarea
+                    type="textarea"
                     value={description}
-                    onChange={(e) => setDescription(e.target.value)}
-                    placeholder="Write something down if you want"
+                    onChange={(e)=> setDescription(e.target.value)}
+                    placeholder="Write something to remember this by"
                     />
                 </label>
+                <div className="form-errors">{hasSubmitted && validationErrors.description}</div>
                 <div id="create-buttons">
                     <button type="submit">Save</button>
                     <button type="button" onClick={closeModal}>Cancel</button>

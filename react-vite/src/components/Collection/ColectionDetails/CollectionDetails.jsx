@@ -55,7 +55,7 @@ export default function CollectionDetails() {
     return (
         <>
             <div id="board-header">
-                <h1>{collection.title}</h1>
+                <h2>{collection.title}</h2>
                 <p>{collection.description}</p>
 
                 {isOwner && (

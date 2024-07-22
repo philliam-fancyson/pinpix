@@ -85,14 +85,16 @@ export default function ImageDetailsCard( {image, user} ) {
                   />
                 )}
                 <form onSubmit={handleSubmit} id="save-options">
-                <Select
-                options={selectOptions}
-                component={animatedComponents}
-                onChange={(e) => {
-                  handleSelect(e);
-                }}
-                />
-                <button type="submit">{saveButton}</button>
+                  <div id="save-select">
+                    <Select
+                    options={selectOptions}
+                    component={animatedComponents}
+                    onChange={(e) => {
+                      handleSelect(e);
+                    }}
+                    />
+                  </div>
+                  <button type="submit">{saveButton}</button>
                 </form>
                 </div>
                 <h2>{image.title}</h2>

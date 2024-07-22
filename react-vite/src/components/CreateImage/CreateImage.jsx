@@ -14,6 +14,8 @@ function CreateImage() {
     const [title, setTitle] = useState("")
     const [description, setDescription] = useState("")
     const [previewImg, setPreviewImg] = useState("")
+    const [validationErrors, setValidationErrors] = useState({})
+    const [hasSubmitted, setHasSubmitted] = useState(false)
     const sessionUser = useSelector(state => state.session.user);
 
     // * Show Image Preview
@@ -29,8 +31,20 @@ function CreateImage() {
         return () => URL.revokeObjectURL(objectUrl)
     }, [image])
 
+    useEffect(() => {
+        const errors = {}
+        if (!image) errors.image = "Please provide an image"
+        if (!title) errors.title = "Please provide a name for your image"
+        if (title.length > 50) errors.title = "Title is too long!"
+        if (description.length > 2000) errors.description = "Description too long!"
+
+        setValidationErrors(errors)
+    }, [image, title, description])
+
     const handleSubmit = async (e) => {
         e.preventDefault();
+        setHasSubmitted(true)
+        if (Object.values(validationErrors).length) return;
         const formData = new FormData();
         formData.append("image", image);
 
@@ -53,7 +67,7 @@ function CreateImage() {
             onSubmit={handleSubmit}
             encType="multipart/form-data"
             >
-                    <input type="button" id="file-button" value="Upload your file" onClick={() => document.getElementById('file-button-hidden').click()} />
+                    <input type="button" id="file-button" value="Upload your image" onClick={() => document.getElementById('file-button-hidden').click()} />
                     <input
                     type="file"
                     id="file-button-hidden"
@@ -81,7 +95,12 @@ function CreateImage() {
                     />
 
                 <button type="submit">Submit</button>
-            {(imageLoading)&& <p>Loading...</p>}
+                <div id="create-form-errors">
+                    {hasSubmitted && <p>{validationErrors.image}</p>}
+                    {hasSubmitted &&<p>{validationErrors.title}</p>}
+                    {hasSubmitted && <p>{validationErrors.description}</p>}
+                </div>
+                {(imageLoading)&& <p>Loading...</p>}
             </form>
         </div>
     )

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { thunkLogin } from "../../redux/session";
 import { useDispatch, useSelector } from "react-redux";
 import { Navigate, useNavigate } from "react-router-dom";
@@ -14,7 +14,13 @@ function LoginFormModal() {
   const [errors, setErrors] = useState({});
   const { closeModal } = useModal();
 
-  if (sessionUser) return <Navigate to="/" replace={true} />;
+  useEffect(() => {
+    const errors = {}
+    if (email.length > 255) errors.email = "Invalid Email"
+    if (password.length > 255) errors.password = "Invalid Password"
+
+    setErrors(errors)
+  },[email, password])
 
   const loginDemo = (e) => {
     e.preventDefault();
@@ -25,7 +31,6 @@ function LoginFormModal() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
     const serverResponse = await dispatch(
       thunkLogin({
         email,
@@ -39,6 +44,8 @@ function LoginFormModal() {
       closeModal();
     }
   };
+
+  if (sessionUser) return <Navigate to="/" replace={true} />;
 
   return (
     <div className="landing-page-container">
@@ -60,7 +67,7 @@ function LoginFormModal() {
             </span>
         </label>
       </div>
-      {errors.email && <p>{errors.email}</p>}
+      <div className="form-errors-login">{errors.email && <p>{errors.email}</p>}</div>
       <div className="input-box">
         <label>
           <input
@@ -75,7 +82,7 @@ function LoginFormModal() {
             </span>
         </label>
       </div>
-      {errors.password && <p>{errors.password}</p>}
+      <div className="form-errors-login">{errors.password && <p>{errors.password}</p>}</div>
       <button type="submit">Log In</button>
       <button className="modal-button" id="demo-user" onClick={loginDemo}>
         Demo User

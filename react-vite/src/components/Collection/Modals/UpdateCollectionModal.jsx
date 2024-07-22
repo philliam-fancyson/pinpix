@@ -37,9 +37,12 @@ export default function UpdateCollectionModal ({collection}) {
     useEffect(() => {
         const errors = {};
         if (!title.length) errors.title = "Title is required"
+        if (title.length > 50) errors.title = "Title is too long!"
+        if (description.length > 2000) errors.description = "Description too long!"
+
 
         setValidationErrors(errors)
-    }, [title])
+    }, [title, description])
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -76,12 +79,18 @@ export default function UpdateCollectionModal ({collection}) {
                     placeholder="What's your board about?"
                     />
                 </label>
-                <OpenModalButton
-                buttonText="Delete"
-                onButtonClick={closeMenu}
-                modalComponent={<DeleteCollectionModals collection={collection}/>}
-                />
-                <button type="submit">Save</button>
+                <div className="form-errors">{hasSubmitted && validationErrors.description}</div>
+                <div id="update-modal-button">
+                    <OpenModalButton
+                    buttonText="Delete"
+                    onButtonClick={closeMenu}
+                    modalComponent={<DeleteCollectionModals collection={collection}/>}
+                    />
+                    <div id="edit-safe">
+                    <button type="button" onClick={closeModal}>Cancel</button>
+                        <button type="submit">Save</button>
+                    </div>
+                </div>
             </form>
         </div>
     )

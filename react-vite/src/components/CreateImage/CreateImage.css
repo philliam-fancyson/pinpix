@@ -10,3 +10,34 @@
     display: flex;
     flex-direction: column;
   }
+
+#create-form-errors {
+    margin:0px;
+}
+
+#create-form-errors p {
+    margin: 0px;
+}
+
+#create-form input, label, textarea{
+    margin: 5px 0px;
+}
+
+
+#create-form button, #file-button {
+    padding: 0.5em 0.7em;
+    background-repeat: no-repeat;
+    background-color: lightgrey;
+    border: 0.5px solid black;
+    font-size: 1em;
+    border-radius: 1em;
+    box-shadow: 0 0 5px rgba(211, 211, 211, 0.292);
+    margin: 5px;
+    cursor:pointer;
+}
+
+textarea {
+    resize: none;
+    min-height: 50px;
+    width: 100%
+}

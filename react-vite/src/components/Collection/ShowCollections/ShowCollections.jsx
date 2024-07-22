@@ -52,14 +52,16 @@ export default function ShowCollections() {
 
     return (
         <div id="show-collection">
-            <h1>{username} Boards</h1>
-            <OpenModalButton
-            buttonText="Create"
-            onButtonClick={closeMenu}
-            modalComponent={<CreateCollectionModal />}
+            <div id="board-header">
+                <h1>{username} Boards</h1>
+                <OpenModalButton
+                buttonText="Create"
+                onButtonClick={closeMenu}
+                modalComponent={<CreateCollectionModal />}
             />
+            </div>
             <div id="board-gallery">
-                <CollectionCard collection={uploadedCollection} username={username} />
+                {userImages?.length > 0 && <CollectionCard collection={uploadedCollection} username={username} />}
                 {userCollections && userCollections.map((collection, index) =>
                     <CollectionCard collection={collection} username={username} key={index}/>
                 )}

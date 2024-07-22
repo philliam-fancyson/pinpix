@@ -37,9 +37,11 @@ export default function UpdateImageDetailsModal({image}) {
     useEffect(() => {
         const errors = {};
         if (!title.length) errors.title = "Title is required"
+        if (title.length > 50) errors.title = "Title is too long!"
+        if (description.length > 2000) errors.description = "Description too long!"
 
         setValidationErrors(errors)
-    }, [title])
+    }, [title, description])
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -77,6 +79,7 @@ export default function UpdateImageDetailsModal({image}) {
                     placeholder="Write a detailed description for your Pin"
                     />
                 </label>
+                <div className="form-errors">{hasSubmitted && validationErrors.description}</div>
                 <div id="update-button">
                     <OpenModalButton
                     buttonText="Delete"
