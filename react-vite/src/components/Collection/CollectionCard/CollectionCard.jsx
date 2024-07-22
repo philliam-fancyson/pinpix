@@ -27,17 +27,17 @@ export default function CollectionCard({collection, username}) {
             <div className="collection-image-gallery">
                 <div className="image-preview">
                     {imagePreview &&
-                        <img src={collection.images[0]?.image_url}/>
+                        (collection.images[0]?.image_url ? <img src={collection.images[0]?.image_url}/> : <></>)
                     }
                 </div>
                 <div className="image-top">
                 {topImage &&
-                        <img src={collection.images[1]?.image_url}/>
+                        (collection.images[1]?.image_url ? <img src={collection.images[1]?.image_url}/> : <></>)
                     }
                 </div>
                 <div className="image-bottom">
                 {bottomImage &&
-                        <img src={collection.images[2]?.image_url}/>
+                        (collection.images[2]?.image_url ? <img src={collection.images[2]?.image_url}/> : <></>)
                     }
                 </div>
             </div>
