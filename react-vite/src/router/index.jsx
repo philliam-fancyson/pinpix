@@ -8,6 +8,7 @@ import ImageDetails from '../components/ImageDetails/ImageDetails';
 import ShowCollections from '../components/Collection/ShowCollections/ShowCollections';
 import CollectionDetails from '../components/Collection/ColectionDetails/CollectionDetails';
 import UploadedDetails from '../components/Collection/ColectionDetails/UploadedDetails';
+import AboutPage from '../components/AboutPage/AboutPage';
 
 export const router = createBrowserRouter([
   {
@@ -16,6 +17,10 @@ export const router = createBrowserRouter([
       {
         path: "/",
         element: <Main />,
+      },
+      {
+        path: "about",
+        element: <AboutPage />
       },
       {
         path: "login",

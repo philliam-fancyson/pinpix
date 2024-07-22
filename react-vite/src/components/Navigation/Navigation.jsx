@@ -37,7 +37,9 @@ function Navigation() {
         <NavLink to="/">
         <button className="nav-button">Home</button>
         </NavLink>
-        <button className="nav-button" onClick={() => {alert("Coming soon")}}>About</button>
+        <NavLink to="/about">
+        <button className="nav-button">About</button>
+        </NavLink>
         {user && (
             <NavLink to="/create">
               <button className="nav-button">Create</button>

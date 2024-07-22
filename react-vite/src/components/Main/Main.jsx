@@ -1,8 +1,6 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-// import { Link } from "react-router-dom";
 import "./Main.css";
-// import LoginFormPage from "../LoginFormPage";
 import { getLatestImages } from "../../redux/image";
 import PinSmall from "../PinCard/PinSmall";
 import PinMedium from "../PinCard/PinMedium";
