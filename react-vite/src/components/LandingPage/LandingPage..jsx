@@ -1,9 +1,10 @@
+import "./LandingPage.css"
 
 export default function LandingPage() {
 
     return (
-        <>
-        <h1>Welcome to PinPix!</h1>
-        </>
+        <div id="landing-page">
+            <h1>Welcome to PinPix!</h1>
+        </ div>
     )
 }

@@ -1,0 +1,19 @@
+#landing-page {
+    display:flex;
+    justify-content: center;
+    opacity: 0;
+    animation: slidefade 0.5s forwards;
+    animation-delay: 0.5s;
+    z-index: 2;
+}
+
+@keyframes slidefade {
+    0% {
+        transform: translate(0px, 20px);
+        opacity: 0;
+    }
+	100% {
+        transform: translate(0px, -10px);
+        opacity: 1;
+	}
+}
