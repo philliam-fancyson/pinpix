@@ -7,6 +7,7 @@ import { thunkAddImageToCollection, thunkGetUserCollections } from "../../../red
 import Select from 'react-select'
 import { components } from 'react-select';
 import './ImageDetailsCard.css'
+import CommentBox from "../../Comment/CommentBox";
 
 export default function ImageDetailsCard( {image, user} ) {
     const dispatch = useDispatch()
@@ -115,8 +116,7 @@ export default function ImageDetailsCard( {image, user} ) {
                 <h2>{image.title}</h2>
                 {image.description && <p>{image.description}</p>}
                 <p>author: {user.username}</p>
-                {/* <div>COMMENTS PLACEHOLDER</div>
-                <div>COMMENT AND LIKES PLACEHOLDER</div> */}
+                <CommentBox imageId={image.id}/>
             </div>
         </div>
     )

@@ -70,6 +70,6 @@ def delete_one_image(id):
     # TODO delete from AWS; code already in s3 bucket, need to test
     status = ImageUtils.delete_one_image(id)
     if status:
-        return jsonify({"message": "Successfully Delete"}), 200
+        return jsonify({"message": "Successfully Deleted"}), 200
     else:
         return jsonify({"message": "Internal Server Error"}), 500

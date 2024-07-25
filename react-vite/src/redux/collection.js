@@ -63,6 +63,7 @@ export const thunkGetUserCollections = () => async (dispatch) => {
     }
 }
 
+// * Get Collection Images
 const helperThunkGetCollectionImages = (title) => async () => {
     title = title.replaceAll(" ", "-")
     const response = await fetch(`/api/collections/boards/${title}/images`);
@@ -146,6 +147,7 @@ export const removeCollection = (id) => async (dispatch) => {
     }
   }
 
+  // * Collection Add Image
 export const thunkAddImageToCollection = (id, imageId) => async () => {
     const response = await fetch(`/api/collections/boards/${id}/images`, {
         method: "POST",
@@ -161,6 +163,7 @@ export const thunkAddImageToCollection = (id, imageId) => async () => {
     }
 }
 
+ // * Collection Remove Image
 export const thunkRemoveImageFromCollection = (id, imageId) => async (dispatch) => {
     const response = await fetch(`/api/collections/boards/${id}/images`, {
         method: "Delete",

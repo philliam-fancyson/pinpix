@@ -12,6 +12,13 @@ def seed_comments():
     )
     comments.append(comment1)
 
+    comment2 = Comment(
+        user_id="3",
+        image_id="21",
+        text="cool outfit"
+    )
+    comments.append(comment2)
+
     for comment in comments:
         db.session.add(comment)
     db.session.commit()

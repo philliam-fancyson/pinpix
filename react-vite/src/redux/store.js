@@ -9,12 +9,14 @@ import sessionReducer from "./session";
 import imageReducer from "./image";
 import userReducer from "./user";
 import collectionReducer from "./collection";
+import commentReducer from "./comment";
 
 const rootReducer = combineReducers({
   session: sessionReducer,
   image: imageReducer,
   collection: collectionReducer,
-  user: userReducer
+  user: userReducer,
+  comment: commentReducer
 });
 
 let enhancer;
