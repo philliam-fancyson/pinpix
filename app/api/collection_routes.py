@@ -8,7 +8,7 @@ collection_routes = Blueprint("collections", __name__)
 @collection_routes.route('/boards/<int:id>',  methods=["GET"])
 def get_collection_info(id):
     return jsonify(CollectionUtils.get_collection_details(id))
-0
+
 @collection_routes.route("/boards/<string:title>", methods=["GET"])
 def get_collection_details(title):
     format_title = title.replace('-', ' ')

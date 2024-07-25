@@ -1,7 +1,7 @@
 from .db import db, environment, SCHEMA, add_prefix_for_prod
 
-class Comments(db.Model):
-    __table__name = "comments"
+class Comment(db.Model):
+    __tablename__ = "comments"
 
     if environment == "production":
         __table_args__ = {'schema': SCHEMA}
@@ -12,10 +12,6 @@ class Comments(db.Model):
     text = db.Column(db.String(500), nullable=False)
 
     # * Relationships
-    user_comments = db.relationship(
-        "User", back_populates="comment_users"
-    )
-
     image_commments = db.relationship(
         "Image", back_populates="comment_images"
     )

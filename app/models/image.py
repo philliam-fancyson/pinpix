@@ -23,3 +23,7 @@ class Image(db.Model):
     collection_images = db.relationship(
         "Collection", secondary=collection_images, back_populates="image_collections"
     )
+
+    comment_images = db.relationship(
+        "Comment", back_populates="image_comments", cascade="all, delete-orphan"
+    )

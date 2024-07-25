@@ -13,6 +13,7 @@ from .api.user_routes import user_routes
 from .api.auth_routes import auth_routes
 from .api.image_routes import image_routes
 from .api.collection_routes import collection_routes
+from .api.comment_routes import comment_routes
 
 app = Flask(__name__, static_folder='../react-vite/dist', static_url_path='/')
 
@@ -34,6 +35,7 @@ app.register_blueprint(user_routes, url_prefix='/api/users')
 app.register_blueprint(auth_routes, url_prefix='/api/auth')
 app.register_blueprint(image_routes, url_prefix='/api/images')
 app.register_blueprint(collection_routes, url_prefix='/api/collections')
+app.register_blueprint(comment_routes, url_prefix="/api/comments")
 db.init_app(app)
 Migrate(app, db)
 

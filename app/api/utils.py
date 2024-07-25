@@ -1,5 +1,5 @@
 from os import name
-from app.models import db, User, Image, Collection, collection_images
+from app.models import db, User, Image, Collection, collection_images, Comment
 from flask_login import current_user
 from flask import Response
 from datetime import datetime
@@ -109,7 +109,7 @@ class CollectionUtils:
 
     @staticmethod
     def parse_data(collection_obj):
-        """ Parse Image Object into python dictionary"""
+        """ Parse Collection Object into python dictionary"""
         try:
             return {
                 "id": collection_obj.id,
@@ -247,3 +247,25 @@ class CollectionUtils:
             return True
         except Exception as e:
             return e
+
+class CommentUtils:
+    """Comment Utility Functions"""
+
+    @staticmethod
+    def parse_data(comment_obj):
+        """ Parse Comment Object into python dictionary"""
+        try:
+            return {
+                "id": comment_obj.id,
+                "user_id": comment_obj.user_id,
+                "image_id": comment_obj.image_id,
+                "text": comment_obj.text
+            }
+        except:
+            raise Exception("Invalid Comment Object from query")
+
+    @staticmethod
+    def get_image_comments(image_id):
+        """Query for all comments by image id"""
+        comments = Comment.query.filter_by(image_id=image_id).order_by(Comment.id.desc())
+        return list(map(lambda x: CommentUtils.parse_data(x), comments))
