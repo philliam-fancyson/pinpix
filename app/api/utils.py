@@ -269,3 +269,49 @@ class CommentUtils:
         """Query for all comments by image id"""
         comments = Comment.query.filter_by(image_id=image_id).order_by(Comment.id.desc())
         return list(map(lambda x: CommentUtils.parse_data(x), comments))
+
+    @staticmethod
+    def create_image_comments(image_id, data):
+        """Create a comment object and commit to db"""
+        new_comment = Comment(
+            user_id=UserUtils.get_current_user()["id"],
+            image_id=image_id,
+            text=data["text"]
+        )
+
+        try:
+            db.session.add(new_comment)
+            db.session.commit()
+            return CommentUtils.parse_data(new_comment)
+        except Exception as e:
+            return e
+
+    @staticmethod
+    def update_comment(comment_id, data):
+        """Update an existing comment"""
+        comment = Comment.query.get(comment_id)
+        current_user_id = UserUtils.get_current_user()["id"]
+        if not (current_user_id == comment.user_id):
+            return 403
+
+        try:
+            comment.text = data['text']
+            db.session.commit()
+        except Exception:
+            return 500
+
+        return CommentUtils.parse_data(comment)
+
+    @staticmethod
+    def delete_comment(comment_id):
+        """Delete a comment"""
+        comment = Comment.query.get(comment_id)
+        try:
+            if UserUtils.get_current_user()["id"] == comment.user_id:
+                db.session.delete(comment)
+                db.session.commit()
+                return True
+            else:
+                return False
+        except:
+            return False

@@ -12,6 +12,6 @@ class Comment(db.Model):
     text = db.Column(db.String(500), nullable=False)
 
     # * Relationships
-    image_commments = db.relationship(
+    image_comments = db.relationship(
         "Image", back_populates="comment_images"
     )

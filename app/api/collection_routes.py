@@ -40,7 +40,7 @@ def update_collection_details(id):
 def delete_collection(id):
     status = CollectionUtils.delete_collection(id)
     if status:
-        return jsonify({"message": "Successfully Delete"}), 200
+        return jsonify({"message": "Successfully Deleted"}), 200
     else:
         return jsonify({"message": "Internal Server Error"}), 500
 

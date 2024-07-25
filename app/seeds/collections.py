@@ -9,7 +9,7 @@ def seed_collections():
         title="my personal collection",
         user_id="1"
         )
-    collections.append(collection1  )
+    collections.append(collection1)
 
     collection2 = Collection(
         title="styles",
