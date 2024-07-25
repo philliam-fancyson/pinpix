@@ -5,7 +5,7 @@ const getComments = (comments) => ({
     comments
 })
 
-export const thunkGetImageComments = (id) => async() => {
+export const thunkGetImageComments = (id) => async(dispatch) => {
     try {
         const response = await fetch(`/api/comments/image/${id}`);
         if (response.ok) {
@@ -24,7 +24,6 @@ export const thunkGetImageComments = (id) => async() => {
 const initialState = { comments: []}
 const commentReducer = (state = initialState, action) => {
     let newState = {}
-
     switch(action.type) {
         case GET_COMMENTS:
             newState = {
