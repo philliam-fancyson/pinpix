@@ -305,6 +305,7 @@ class CommentUtils:
         except Exception:
             return 500
 
+        updatedComment = Comment.query.options(joinedload(Comment.user_comments)).get(comment_id)
         return CommentUtils.parse_data(comment)
 
     @staticmethod

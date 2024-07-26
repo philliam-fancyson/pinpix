@@ -92,6 +92,8 @@ export default function ImageDetailsCard( {image, user} ) {
         <div className="details-card">
             <img src={image.image_url} />
             <div className="card-info">
+              <div className="card-info-header">
+
               <div className="card-info-top">
                 {isOwner && (
                   <OpenModalButton
@@ -113,10 +115,13 @@ export default function ImageDetailsCard( {image, user} ) {
                   <button type="submit">{saveButton}</button>
                 </form>
                 </div>
-                <h2>{image.title}</h2>
-                {image.description && <p>{image.description}</p>}
-                <p>author: {user.username}</p>
-                <CommentBox imageId={image.id}/>
+                <div className="card-info-bottom">
+                  <h2>{image.title}</h2>
+                  {image.description && <p>{image.description}</p>}
+                  <p>author: {user.username}</p>
+                </div>
+                </div>
+                <CommentBox imageId={image.id} userId={sessionUser.id}/>
             </div>
         </div>
     )

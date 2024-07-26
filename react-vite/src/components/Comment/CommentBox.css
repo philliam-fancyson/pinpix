@@ -1,4 +1,115 @@
+#comment-box {
+    height: 85%
+}
+
 #comment-thread {
-    max-height: 140px;
-    overflow-y: scroll;
+    height: 60%;
+    overflow-y: auto;
+}
+
+#comment-input {
+    height: 150px;
+    display:flex;
+    flex-direction: column;
+}
+
+#comment-input input {
+    border-radius: 25px;
+    height: 50px;
+    width: 60%;
+    text-indent: 15px;
+}
+
+#comment-submit {
+    position: absolute;
+    margin-top: 20px;
+    margin-left: -37px;
+}
+
+#comment-submit:hover{
+    cursor: pointer;
+}
+
+#comment-submit-hidden {
+    display: none;
+}
+
+.comment-element {
+    min-height: 30px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.comment-ellipsis {
+    margin-top: 5px;
+    margin-right: 20px;
+    border-radius: 1em;
+    padding: 5px 5px;
+    width: 15px;
+    height: 15px;
+    border: 1px solid rgba(0, 0, 0, 0);
+}
+
+.comment-ellipsis:hover {
+    border: 1px solid lightgray;
+    border-radius: 1em;
+    background-color: lightgrey;
+}
+
+.comment-dropdown {
+    border: 1px solid lightgray;
+    border-radius: 0.5em;
+    height: 70px;
+    background-color: white;
+    width: 100px;
+    position: absolute;
+    margin-top: 35px;
+    padding-top: 10px;
+    right: 175px;
+    list-style: none;
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.comment-dropdown button {
+    width: 95%;
+    height: 30px;
+    text-align: left;
+    background-color: white;
+    border: none;
+    margin: 1px;
+}
+
+.comment-dropdown button:hover{
+    background-color: lightgray;
+    border: 1px solid lightgray;
+    border-radius: 0.5em;
+}
+
+#update-comment input {
+    border-radius: 25px;
+    height: 40px;
+    width: 100%;
+    text-indent: 15px;
+}
+
+.update-comment-wrapper {
+    display: flex;
+    flex-direction: column;
+    width: 90%;
+}
+
+.update-comment-buttons {
+    margin-top: 5px;
+    display:flex;
+    justify-content: flex-end;
+}
+
+.update-comment-buttons button {
+    height: 30px;
+    margin-left: 5px;
+    background-color: lightgray;
+    border: 1px solid lightgray;
+    border-radius: 1em;
 }
