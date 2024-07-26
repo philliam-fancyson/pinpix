@@ -15,3 +15,7 @@ class Comment(db.Model):
     image_comments = db.relationship(
         "Image", back_populates="comment_images"
     )
+
+    user_comments = db.relationship(
+        "User", back_populates="comment_users"
+    )

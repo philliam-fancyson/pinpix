@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux"
-import { thunkGetImageComments } from "../../redux/comment";
+import { thunkAddComment, thunkGetImageComments } from "../../redux/comment";
+import './CommentBox.css'
 
 export default function CommentBox({imageId}) {
     const dispatch = useDispatch()
@@ -12,6 +13,14 @@ export default function CommentBox({imageId}) {
         dispatch(thunkGetImageComments(imageId))
     },[dispatch, imageId])
 
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        const payload = {
+            text
+        }
+        dispatch(thunkAddComment(imageId, payload))
+    }
+
     return (
         <div id="comment-box">
             <h2>Comments</h2>
@@ -21,7 +30,7 @@ export default function CommentBox({imageId}) {
             )) : <p>No comments yet! Add one to start the conversation.</p>}
             </div>
             <div id="comment-input">
-                <form>
+                <form onSubmit={handleSubmit}>
                     <h2>What do you think?</h2>
                     <input
                     type="text"

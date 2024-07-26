@@ -18,6 +18,11 @@ class User(db.Model, UserMixin):
     hashed_password = db.Column(db.String(255), nullable=False)
     created_at = db.Column(db.DateTime, nullable = False, server_default=db.func.now())
 
+    # * Relationships
+    comment_users = db.relationship(
+        "Comment", back_populates="user_comments", cascade="all, delete-orphan"
+    )
+
     @property
     def password(self):
         return self.hashed_password

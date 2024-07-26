@@ -1,0 +1,4 @@
+#comment-thread {
+    max-height: 140px;
+    overflow-y: scroll;
+}

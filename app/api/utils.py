@@ -17,6 +17,7 @@ class UserUtils:
         else:
             raise Exception("User not logged in")
 
+
 class ImageUtils:
     """Image Utility Functions"""
 
@@ -259,7 +260,8 @@ class CommentUtils:
                 "id": comment_obj.id,
                 "user_id": comment_obj.user_id,
                 "image_id": comment_obj.image_id,
-                "text": comment_obj.text
+                "text": comment_obj.text,
+                "user": comment_obj.user_comments.to_dict()
             }
         except:
             raise Exception("Invalid Comment Object from query")
@@ -267,7 +269,12 @@ class CommentUtils:
     @staticmethod
     def get_image_comments(image_id):
         """Query for all comments by image id"""
-        comments = Comment.query.filter_by(image_id=image_id).order_by(Comment.id.desc())
+        # comments = Comment.query \
+        #             .filter_by(image_id=image_id).order_by(Comment.id.desc())
+        comments = Comment.query.options(joinedload(Comment.user_comments)).all()
+        for comment in comments:
+            print(comment.user_comments)
+        print(str(comments))
         return list(map(lambda x: CommentUtils.parse_data(x), comments))
 
     @staticmethod
