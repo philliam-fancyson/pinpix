@@ -269,9 +269,7 @@ class CommentUtils:
     @staticmethod
     def get_image_comments(image_id):
         """Query for all comments by image id"""
-        # comments = Comment.query \
-        #             .filter_by(image_id=image_id).order_by(Comment.id.desc())
-        comments = Comment.query.options(joinedload(Comment.user_comments)).all()
+        comments = Comment.query.options(joinedload(Comment.user_comments)).filter_by(image_id=image_id).order_by(Comment.id.desc()).all()
         for comment in comments:
             print(comment.user_comments)
         print(str(comments))

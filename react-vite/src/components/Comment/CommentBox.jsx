@@ -19,6 +19,7 @@ export default function CommentBox({imageId}) {
             text
         }
         dispatch(thunkAddComment(imageId, payload))
+        setText("")
     }
 
     return (
@@ -26,7 +27,7 @@ export default function CommentBox({imageId}) {
             <h2>Comments</h2>
             <div id="comment-thread">
             {comments?.length ? (comments.map(comment =>
-                <p key={comment.id}>{comment.text}</p>
+                <p key={comment.id}><strong>{comment.user.username}</strong> {comment.text}</p>
             )) : <p>No comments yet! Add one to start the conversation.</p>}
             </div>
             <div id="comment-input">
