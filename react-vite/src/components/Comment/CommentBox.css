@@ -56,18 +56,29 @@
     background-color: lightgrey;
 }
 
+.comment-ellipsis-wrapper {
+    /* this is important to make the dropdown menu not overflow outside parent  */
+    position: relative;
+
+    .comment-dropdown {
+        position: absolute;
+        z-index: 10;
+        right: 10px;
+        top: -5px;
+    }
+}
+
 .comment-dropdown {
     border: 1px solid lightgray;
     border-radius: 0.5em;
     height: 70px;
     background-color: white;
     width: 100px;
-    position: absolute;
+
     margin-top: 35px;
     padding-top: 10px;
-    right: 175px;
     list-style: none;
-    display:flex;
+    /* display:flex; */
     flex-direction: column;
     align-items: center;
 }

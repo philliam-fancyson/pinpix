@@ -1,6 +1,7 @@
 const GET_COMMENTS = `comment/getComments`
 const ADD_COMMENT = `comment/addComment`
 const UPDATE_COMMENT = `comment/updateComment`
+const DELETE_COMMENT = `comment/deleteComment`
 
 const getComments = (comments) => ({
     type: GET_COMMENTS,
@@ -15,6 +16,11 @@ const addComment = (comment) => ({
 const updateComment = (comment) => ({
     type: UPDATE_COMMENT,
     comment
+})
+
+const deleteComment = (commentId) => ({
+    type: DELETE_COMMENT,
+    commentId
 })
 
 export const thunkGetImageComments = (id) => async(dispatch) => {
@@ -71,6 +77,24 @@ export const thunkUpdateComment = (commentId, data) => async(dispatch) => {
     }
 }
 
+export const thunkDeleteComment = (commentId) => async(dispatch) => {
+    try {
+        const response = await fetch(`/api/comments/comment/${commentId}`, {
+            method: "DELETE",
+            headers: {
+                "Content-Type": "application/json"
+              },
+        })
+        if (response.ok) {
+            dispatch(deleteComment(commentId))
+        } else {
+            return { server: "Something went wrong. Please try again" };
+        }
+    } catch (err) {
+        return err
+    }
+}
+
 
 // * Reducer
 const initialState = { comments: []}
@@ -102,6 +126,12 @@ const commentReducer = (state = initialState, action) => {
                 comments: newComments
             }
             return newState;
+        case DELETE_COMMENT:
+            newState = {
+                ...state,
+                comments: state.comments.filter(comment => comment.id !== action.commentId)
+            }
+            return newState
         default:
             return state
     }
