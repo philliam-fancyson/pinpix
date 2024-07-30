@@ -154,7 +154,7 @@ export const thunkAddImageToCollection = (id, imageId) => async () => {
         headers: {
           "Content-Type": "application/json"
         },
-        body: JSON.stringify({imageId: imageId})
+        body: JSON.stringify({imageId})
       });
     if (response.ok) {
         return true
