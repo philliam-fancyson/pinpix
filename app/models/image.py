@@ -27,3 +27,7 @@ class Image(db.Model):
     comment_images = db.relationship(
         "Comment", back_populates="image_comments", cascade="all, delete-orphan"
     )
+
+    like_images = db.relationship(
+        "ImageLike", back_populates="image_likes", cascade="all, delete-orphan"
+    )

@@ -49,6 +49,8 @@ export const thunkGetUserCollections = () => async (dispatch) => {
         const response = await fetch(`/api/collections/current`);
         if (response.ok) {
             const collections = await response.json()
+
+            // Appends the images data to each collection
             for (let collection of collections) {
                 const imagesResponse = await dispatch(helperThunkGetCollectionImages(collection.title))
                 collection.images = imagesResponse

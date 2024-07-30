@@ -1,5 +1,5 @@
 from os import name
-from app.models import db, User, Image, Collection, collection_images, Comment
+from app.models import db, User, Image, Collection, collection_images, Comment, ImageLike
 from flask_login import current_user
 from flask import Response
 from datetime import datetime
@@ -7,6 +7,7 @@ from sqlalchemy.orm import joinedload
 from sqlalchemy import insert, delete
 import json
 
+# * ------------------------------------------- User Utility Functions -------------------------------------------
 class UserUtils:
     """Get the current user's id """
     @staticmethod
@@ -17,7 +18,7 @@ class UserUtils:
         else:
             raise Exception("User not logged in")
 
-
+# * ------------------------------------------- Image Utility Functions -------------------------------------------
 class ImageUtils:
     """Image Utility Functions"""
 
@@ -105,6 +106,66 @@ class ImageUtils:
         else:
             return False
 
+    # * --------------------- ImageLikes ---------------------
+    @staticmethod
+    def get_image_likes(image_id):
+        try:
+            like_count = ImageLike.query.filter(ImageLike.image_id == image_id).count()
+            like_obj = {
+                    'image_id': image_id,
+                    'like_count': like_count
+                }
+            if UserUtils.get_current_user():
+                user_like = ImageLike.query.filter(ImageLike.user_id == UserUtils.get_current_user()["id"]).first()
+                if user_like:
+                    like_obj['user_liked'] = True
+                else:
+                    like_obj['user_liked'] = False
+            else:
+                like_obj['user_liked'] = False
+            return like_obj
+        except:
+            raise Exception("Server Error. Fix yo")
+
+    @staticmethod
+    def add_image_like(image_id):
+        check_if_liked = ImageLike.query.filter(ImageLike.user_id == UserUtils.get_current_user()["id"]).all()
+        if check_if_liked:
+            return 403
+
+        new_like = ImageLike(
+            user_id=UserUtils.get_current_user()["id"],
+            image_id=image_id
+        )
+
+        try:
+            db.session.add(new_like)
+            db.session.commit()
+            like_count = ImageLike.query.filter(ImageLike.image_id == image_id).count()
+            return {
+                    'image_id': image_id,
+                    'like_count': like_count,
+                    'user_liked': True
+                }
+        except:
+            return 500
+
+    @staticmethod
+    def remove_image_like(image_id):
+        try:
+            like = ImageLike.query.filter(ImageLike.user_id == UserUtils.get_current_user()["id"], ImageLike.image_id == image_id).one()
+        except:
+            e = {'error': 'No Like Found', 'status_code': 500}
+            return e
+
+        if UserUtils.get_current_user()["id"] == like.user_id:
+            db.session.delete(like)
+            db.session.commit()
+            return 200
+        else:
+            e = {'error': 'Weird Error', 'status_code': 403}
+
+# * ------------------------------------------- Collection Utility Functions -------------------------------------------
 class CollectionUtils:
     """Collection Utility Functions"""
 
@@ -249,6 +310,7 @@ class CollectionUtils:
         except Exception as e:
             return e
 
+# * ------------------------------------------- Comment Utility Functions -------------------------------------------
 class CommentUtils:
     """Comment Utility Functions"""
 

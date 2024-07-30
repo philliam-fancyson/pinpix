@@ -73,3 +73,25 @@ def delete_one_image(id):
         return jsonify({"message": "Successfully Deleted"}), 200
     else:
         return jsonify({"message": "Internal Server Error"}), 500
+
+# * Image Likes
+@image_routes.route("/<int:id>/likes", methods=["GET"])
+def get_all_likes(id):
+    return ImageUtils.get_image_likes(id)
+
+@image_routes.route("/<int:id>/likes", methods=["POST"])
+@login_required
+def add_image_like(id):
+    status =  ImageUtils.add_image_like(id)
+    if status == 403 or status == 500:
+        return jsonify({'message': 'Server error'}), status
+    return status
+
+@image_routes.route("/<int:id>/likes", methods=["DELETE"])
+@login_required
+def remove_all_like(id):
+    status = ImageUtils.remove_image_like(id)
+    if status == 200:
+        return jsonify({'message': 'Succcesfully Deleted'}), status
+    else:
+        return jsonify({'message': status['error']}), status['status_code']
