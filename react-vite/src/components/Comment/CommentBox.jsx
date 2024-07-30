@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux"
 import { thunkAddComment, thunkGetImageComments } from "../../redux/comment";
 import './CommentBox.css'
