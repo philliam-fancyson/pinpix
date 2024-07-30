@@ -6,6 +6,7 @@ const GET_USER_IMAGES= `image/getUserImage`
 const ADD_IMAGE = 'image/addImage'
 const UPDATE_IMAGE = 'image/updateImage'
 const DELETE_IMAGE = 'image/deleteImage'
+const LIKE_CHANGE = `image/likeChange`
 
 const getImage = (image) => ({
   type: GET_IMAGE,
@@ -35,6 +36,16 @@ const updateImage = (image) => ({
 export const deleteImage = (imageId) => ({
   type: DELETE_IMAGE,
   imageId
+})
+
+const addImageLike = (like) => ({
+  type: LIKE_CHANGE,
+  like
+})
+
+const removeImageLike = (like) => ({
+  type: LIKE_CHANGE,
+  like
 })
 
 // * Thunks
@@ -140,6 +151,32 @@ export const removeImage = (id) => async (dispatch) => {
   }
 }
 
+export const thunkAddLike = (id) => async (dispatch) => {
+  const response = await fetch(`/api/images/${id}/likes`, {
+    method: "POST"
+  })
+
+  if (response.ok) {
+    const like = await response.json();
+    return dispatch(addImageLike(like))
+  } else {
+    throw new Error("failed to like");
+  }
+}
+
+export const thunkRemoveLike= (id) => async (dispatch) => {
+  const response = await fetch(`/api/images/${id}/likes`, {
+    method: "DELETE"
+  })
+
+  if (response.ok) {
+    const like = await response.json();
+    return dispatch(removeImageLike(like))
+  } else {
+    throw new Error("failed to likee");
+  }
+}
+
 // * Reducer
 const initialState = { images: [], image: {}, userImages: [] }
 const imageReducer = (state = initialState, action) => {
@@ -170,6 +207,14 @@ const imageReducer = (state = initialState, action) => {
             images: state.images.filter(image => image.id !== action.imageId),
             image: {}
           }
+          return newState
+        case LIKE_CHANGE:
+          newState = {
+            ...state,
+            images: [...state.images],
+            image: {...state.image}
+          }
+          newState.image.likes = action.like
           return newState
         default:
             return state
