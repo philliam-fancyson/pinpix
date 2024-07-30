@@ -4,8 +4,11 @@ import { thunkAddComment, thunkGetImageComments } from "../../redux/comment";
 import './CommentBox.css'
 import CommentElement from "./CommentElement";
 import { IoSend } from "react-icons/io5";
+import { GoHeart } from "react-icons/go";
+import { GoHeartFill } from "react-icons/go";
+import { thunkAddLike, thunkRemoveLike } from "../../redux/image";
 
-export default function CommentBox({imageId, userId}) {
+export default function CommentBox({imageId, userId, likes}) {
     const dispatch = useDispatch()
     const comments = useSelector(state => state.comment.comments);
     const [text, setText] = useState("")
@@ -32,6 +35,16 @@ export default function CommentBox({imageId, userId}) {
         setText("")
     }
 
+    const likePin = async () => {
+        dispatch(thunkAddLike(imageId))
+    }
+
+    const unlikePin = async () => {
+        dispatch(thunkRemoveLike(imageId))
+    }
+
+    const likeCount = likes?.like_count > 0 ? "like-count" : "like-count-hidden"
+
     return (
         <div id="comment-box">
             <h2>Comments</h2>
@@ -45,7 +58,17 @@ export default function CommentBox({imageId, userId}) {
             )) : <p>No comments yet! Add one to start the conversation.</p>}
             </div>
             <div id="comment-input">
-                <h2>{comments?.length > 0 ? `${comments.length} ${comments?.length === 1 ? "comment" : "comments"}` : "What do you think?"}</h2>
+                <div id="comment-input-header">
+                    <h2>{comments?.length > 0 ? `${comments.length} ${comments?.length === 1 ? "comment" : "comments"}` : "What do you think?"}</h2>
+                    <div id="image-likes">
+                        <p id={likeCount}><GoHeartFill /> {likes?.like_count}</p>
+                        {likes?.user_liked ? (
+                            <button id="likes-button-liked" onClick={unlikePin}><GoHeartFill /></button>
+                            ) : (
+                            <button id="likes-button-unliked" onClick={likePin}><GoHeart /></button>
+                            )}
+                    </div>
+                </div>
                 <form onSubmit={handleSubmit}>
                     <input
                     type="text"

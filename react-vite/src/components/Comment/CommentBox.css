@@ -20,6 +20,59 @@
     text-indent: 15px;
 }
 
+#comment-input-header {
+    display: flex;
+}
+
+#comment-input-header svg {
+    position:relative;
+    top: 3px;
+    font-size: larger;
+    color: red;
+}
+
+#image-likes {
+    display: flex;
+    flex-direction: row;
+    position:relative;
+    align-self: center;
+    right: -200px;
+}
+
+#image-likes p {
+    position:relative;
+}
+
+#like-count-hidden {
+    visibility: hidden;
+}
+
+#likes-button-unliked {
+    border-radius: 50%;
+    padding: 10px;
+    margin-left: 10px;
+    border: none;
+
+    > svg {
+        color: black;
+        font-size:x-large;
+    }
+}
+
+#likes-button-liked {
+    border-radius: 50%;
+    padding: 10px;
+    margin-left: 10px;
+    background-color: rgb(253, 225, 225);
+    border: none;
+
+    > svg {
+        color: red;
+        font-size:x-large;
+    }
+}
+
+
 #comment-submit {
     position: absolute;
     margin-top: 20px;

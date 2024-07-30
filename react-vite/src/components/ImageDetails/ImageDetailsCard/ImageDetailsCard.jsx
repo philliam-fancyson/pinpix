@@ -121,7 +121,7 @@ export default function ImageDetailsCard( {image, user} ) {
                   <p>author: {user.username}</p>
                 </div>
                 </div>
-                <CommentBox imageId={image.id} userId={sessionUser.id}/>
+                <CommentBox imageId={image.id} userId={sessionUser.id} likes={image.likes}/>
             </div>
         </div>
     )

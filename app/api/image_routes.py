@@ -90,8 +90,4 @@ def add_image_like(id):
 @image_routes.route("/<int:id>/likes", methods=["DELETE"])
 @login_required
 def remove_all_like(id):
-    status = ImageUtils.remove_image_like(id)
-    if status == 200:
-        return jsonify({'message': 'Succcesfully Deleted'}), status
-    else:
-        return jsonify({'message': status['error']}), status['status_code']
+    return ImageUtils.remove_image_like(id)

@@ -23,10 +23,10 @@ class ImageUtils:
     """Image Utility Functions"""
 
     @staticmethod
-    def parse_data(image_obj):
+    def parse_data(image_obj, like_obj=None):
         """ Parse Image Object into python dictionary"""
         try:
-            return {
+            data_parsed = {
                 "id": image_obj.id,
                 "title": image_obj.title,
                 "description": image_obj.description,
@@ -35,13 +35,17 @@ class ImageUtils:
                 "tag_id": image_obj.tag_id,
                 "created_at": image_obj.created_at
             }
+            if like_obj:
+                data_parsed['likes'] = like_obj
+            return data_parsed
         except:
             raise Exception("Invalid Image Object from query")
 
     @staticmethod
     def get_one_image(imageId):
         one_image = Image.query.get(imageId)
-        return ImageUtils.parse_data(one_image)
+        likes = ImageUtils.get_image_likes(imageId)
+        return ImageUtils.parse_data(one_image, likes)
 
     @staticmethod
     def get_all_images():
@@ -109,14 +113,14 @@ class ImageUtils:
     # * --------------------- ImageLikes ---------------------
     @staticmethod
     def get_image_likes(image_id):
+        # TODO: add a check if Image exists?
         try:
             like_count = ImageLike.query.filter(ImageLike.image_id == image_id).count()
             like_obj = {
-                    'image_id': image_id,
                     'like_count': like_count
                 }
             if UserUtils.get_current_user():
-                user_like = ImageLike.query.filter(ImageLike.user_id == UserUtils.get_current_user()["id"]).first()
+                user_like = ImageLike.query.filter(ImageLike.user_id == UserUtils.get_current_user()["id"], ImageLike.image_id == image_id).first()
                 if user_like:
                     like_obj['user_liked'] = True
                 else:
@@ -129,7 +133,8 @@ class ImageUtils:
 
     @staticmethod
     def add_image_like(image_id):
-        check_if_liked = ImageLike.query.filter(ImageLike.user_id == UserUtils.get_current_user()["id"]).all()
+        # TODO: add a check if Image exists?
+        check_if_liked = ImageLike.query.filter(ImageLike.user_id == UserUtils.get_current_user()["id"], ImageLike.image_id == image_id).all()
         if check_if_liked:
             return 403
 
@@ -143,7 +148,6 @@ class ImageUtils:
             db.session.commit()
             like_count = ImageLike.query.filter(ImageLike.image_id == image_id).count()
             return {
-                    'image_id': image_id,
                     'like_count': like_count,
                     'user_liked': True
                 }
@@ -152,18 +156,26 @@ class ImageUtils:
 
     @staticmethod
     def remove_image_like(image_id):
+        # TODO: add a check if Image exists?
         try:
             like = ImageLike.query.filter(ImageLike.user_id == UserUtils.get_current_user()["id"], ImageLike.image_id == image_id).one()
         except:
-            e = {'error': 'No Like Found', 'status_code': 500}
+            e = {'error': 'No Like Found'}, 500
             return e
 
-        if UserUtils.get_current_user()["id"] == like.user_id:
-            db.session.delete(like)
-            db.session.commit()
-            return 200
-        else:
-            e = {'error': 'Weird Error', 'status_code': 403}
+        try:
+            if UserUtils.get_current_user()["id"] == like.user_id:
+                db.session.delete(like)
+                db.session.commit()
+                like_count = ImageLike.query.filter(ImageLike.image_id == image_id).count()
+                return {
+                        'like_count': like_count,
+                        'user_liked': False
+                    }, 200
+            else:
+                e = {'error': 'Weird Error'}, 403
+        except Exception as e:
+            return {'error': e}, 500
 
 # * ------------------------------------------- Collection Utility Functions -------------------------------------------
 class CollectionUtils:
