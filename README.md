@@ -59,14 +59,14 @@ PinPix is a web application inspired by Pinterest, designed to allow users to di
    pipenv shell
    ```
 
-    \`\`\`bash
+   ```bash
    # Start the backend server
    flask run
-
+   
    # Start the frontend development server
    cd react-vite
    npm start
-   \`\`\`
+   ```
 
 ## Usage
 
