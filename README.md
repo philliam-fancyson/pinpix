@@ -1,30 +1,47 @@
-# Flask React Project
+# PinPix
 
-This is the starter for the Flask React project.
+PinPix is a web application inspired by Pinterest, designed to allow users to discover, save, and share creative ideas.
 
-## Getting started
+## Key Features
 
-1. Clone this repository (only this branch).
+- **User Authentication**: Secure login and signup functionality.
+- **Pin Creation**: Users can create and upload their own pins with images and descriptions.
+- **Boards**: Users can organize their pins into different boards for easy access.
 
-2. Install dependencies.
+## Technologies Used
 
-   ```bash
-   pipenv install -r requirements.txt
-   ```
+- **Frontend**:
+  - JavaScript
+  - React
+  - Redux
+  - HTML5
+  - CSS
+- **Backend**:
+  - Python
+  - Flask
+  - SQLAlchemy
+  - Alembic
+- **Database**: SQL
 
-3. Create a __.env__ file based on the example with proper settings for your
-   development environment.
+## Installation
 
-4. Make sure the SQLite3 database connection URL is in the __.env__ file.
+1. **Clone the repository**:
+   \`\`\`bash
+   git clone https://github.com/philliam-fancyson/PinPix.git
+   cd PinPix
+   \`\`\`
 
-5. This starter organizes all tables inside the `flask_schema` schema, defined
-   by the `SCHEMA` environment variable.  Replace the value for
-   `SCHEMA` with a unique name, **making sure you use the snake_case
-   convention.**
+2. **Install dependencies**:
+   \`\`\`bash
+   # For the backend
+   pip install -r requirements.txt
 
-6. Get into your pipenv, migrate your database, seed your database, and run your
-   Flask app:
+   # For the frontend
+   cd client
+   npm install
+   \`\`\`
 
+3. **Set up the database**:
    ```bash
    pipenv shell
    ```
@@ -37,95 +54,32 @@ This is the starter for the Flask React project.
    flask seed all
    ```
 
+5. **Run the application**:
    ```bash
-   flask run
+   pipenv shell
    ```
 
-7. The React frontend has no styling applied. Copy the __.css__ files from your
-   Authenticate Me project into the corresponding locations in the
-   __react-vite__ folder to give your project a unique look.
+    \`\`\`bash
+   # Start the backend server
+   flask run
 
-8. To run the React frontend in development, `cd` into the __react-vite__
-   directory and run `npm i` to install dependencies. Next, run `npm run build`
-   to create the `dist` folder. The starter has modified the `npm run build`
-   command to include the `--watch` flag. This flag will rebuild the __dist__
-   folder whenever you change your code, keeping the production version up to
-   date.
+   # Start the frontend development server
+   cd react-vite
+   npm start
+   \`\`\`
 
-## Deployment through Render.com
+## Usage
 
-First, recall that Vite is a development dependency, so it will not be used in
-production. This means that you must already have the __dist__ folder located in
-the root of your __react-vite__ folder when you push to GitHub. This __dist__
-folder contains your React code and all necessary dependencies minified and
-bundled into a smaller footprint, ready to be served from your Python API.
+1. **Sign up or log in** to start creating and organizing your pins.
+2. **Create boards** to categorize your pins.
+3. **Add new pins** by uploading images and providing descriptions.
+4. **Search and browse** to discover new ideas and inspirations.
 
-Begin deployment by running `npm run build` in your __react-vite__ folder and
-pushing any changes to GitHub.
+## Contributing
 
-Refer to your Render.com deployment articles for more detailed instructions
-about getting started with [Render.com], creating a production database, and
-deployment debugging tips.
+If you'd like to contribute to PinPix, please fork the repository and use a feature branch. Pull requests are warmly welcome.
 
-From the Render [Dashboard], click on the "New +" button in the navigation bar,
-and click on "Web Service" to create the application that will be deployed.
+## License
 
-Select that you want to "Build and deploy from a Git repository" and click
-"Next". On the next page, find the name of the application repo you want to
-deploy and click the "Connect" button to the right of the name.
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-Now you need to fill out the form to configure your app. Most of the setup will
-be handled by the __Dockerfile__, but you do need to fill in a few fields.
-
-Start by giving your application a name.
-
-Make sure the Region is set to the location closest to you, the Branch is set to
-"main", and Runtime is set to "Docker". You can leave the Root Directory field
-blank. (By default, Render will run commands from the root directory.)
-
-Select "Free" as your Instance Type.
-
-### Add environment variables
-
-In the development environment, you have been securing your environment
-variables in a __.env__ file, which has been removed from source control (i.e.,
-the file is gitignored). In this step, you will need to input the keys and
-values for the environment variables you need for production into the Render
-GUI.
-
-Add the following keys and values in the Render GUI form:
-
-- SECRET_KEY (click "Generate" to generate a secure secret for production)
-- FLASK_ENV production
-- FLASK_APP app
-- SCHEMA (your unique schema name, in snake_case)
-
-In a new tab, navigate to your dashboard and click on your Postgres database
-instance.
-
-Add the following keys and values:
-
-- DATABASE_URL (copy value from the **External Database URL** field)
-
-**Note:** Add any other keys and values that may be present in your local
-__.env__ file. As you work to further develop your project, you may need to add
-more environment variables to your local __.env__ file. Make sure you add these
-environment variables to the Render GUI as well for the next deployment.
-
-### Deploy
-
-Now you are finally ready to deploy! Click "Create Web Service" to deploy your
-project. The deployment process will likely take about 10-15 minutes if
-everything works as expected. You can monitor the logs to see your Dockerfile
-commands being executed and any errors that occur.
-
-When deployment is complete, open your deployed site and check to see that you
-have successfully deployed your Flask application to Render! You can find the
-URL for your site just below the name of the Web Service at the top of the page.
-
-**Note:** By default, Render will set Auto-Deploy for your project to true. This
-setting will cause Render to re-deploy your application every time you push to
-main, always keeping it up to date.
-
-[Render.com]: https://render.com/
-[Dashboard]: https://dashboard.render.com/
