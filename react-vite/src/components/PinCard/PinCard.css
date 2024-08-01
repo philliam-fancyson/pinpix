@@ -4,16 +4,21 @@
     margin: 10px 16px;
   }
 
+.pin-card img {
+  object-fit: cover;
+  border-radius: 16px;
+}
+
   .card-small {
-    grid-row-end: span 26
+    grid-row-end: span 22
   }
 
   .card-medium {
-    grid-row-end: span 33
+    grid-row-end: span 29
   }
 
   .card-large {
-    grid-row-end: span 45
+    grid-row-end: span 41
   }
 
   .collection-card-small {
