@@ -26,20 +26,20 @@ PinPix is a web application inspired by Pinterest, designed to allow users to di
 ## Installation
 
 1. **Clone the repository**:
-   \`\`\`bash
+   ```bash
    git clone https://github.com/philliam-fancyson/PinPix.git
    cd PinPix
-   \`\`\`
+   ```
 
 2. **Install dependencies**:
-   \`\`\`bash
+   ```bash
    # For the backend
    pip install -r requirements.txt
 
    # For the frontend
    cd client
    npm install
-   \`\`\`
+   ```
 
 3. **Set up the database**:
    ```bash
