@@ -69,8 +69,8 @@ def seed_images():
     user_2_images.append(u2_image7)
 
     u2_image5 = Image(
-        title="city-pop",
-        image_url="https://pinpix-bucket.s3.us-west-1.amazonaws.com/c782bf3a78ef4cd098c7f9d794c060d1.jpg",
+        title="beautiful",
+        image_url="https://pinpix-bucket.s3.us-west-1.amazonaws.com/9c7b7d465e2a44ca8bbe7a718092710a.jpg",
         user_id="2"
         )
     user_2_images.append(u2_image5)
@@ -298,7 +298,7 @@ def seed_images():
 
     for image in user_upload1:
         db.session.add(image)
-    
+
     db.session.commit()
 
 

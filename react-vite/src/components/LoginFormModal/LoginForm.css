@@ -101,4 +101,5 @@ form#login-form button:hover {
 
 .form-errors-login p {
     margin:3px;
+    color: red;
 }

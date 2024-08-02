@@ -67,10 +67,10 @@ def seed_collection_images():
                            {"collection_id": 1, "image_id": 15},
                            {"collection_id": 1, "image_id": 17},
                            {"collection_id": 2, "image_id": 3},
-                           {"collection_id": 2, "image_id": 10},
-                           {"collection_id": 2, "image_id": 20},
-                           {"collection_id": 2, "image_id": 21},
-                           {"collection_id": 2, "image_id": 22},
+                           {"collection_id": 2, "image_id": 24},
+                           {"collection_id": 2, "image_id": 8},
+                           {"collection_id": 2, "image_id": 32},
+                           {"collection_id": 2, "image_id": 37},
                        ],
                        )
     db.session.commit()

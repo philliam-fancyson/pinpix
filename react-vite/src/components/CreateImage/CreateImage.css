@@ -17,6 +17,7 @@
 
 #create-form-errors p {
     margin: 0px;
+    color: red;
 }
 
 #create-form input, label, textarea{

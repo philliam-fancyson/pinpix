@@ -38,7 +38,7 @@
     from {
         translate: -100px;
       }
-    
+
       to {
         translate: 0px;
       }
@@ -53,7 +53,7 @@
 
 .landing-element {
     height: 60vh;
-    width: 100px;
+    width: 120px;
     overflow: hidden;
     border-radius: 30px;
     margin-left: 5px;

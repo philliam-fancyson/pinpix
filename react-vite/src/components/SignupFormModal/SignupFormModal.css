@@ -92,4 +92,5 @@ form#signup-form-modal button:hover {
 .form-errors-modal p {
     margin: 0;
     font-size: small;
+    color: red;
 }

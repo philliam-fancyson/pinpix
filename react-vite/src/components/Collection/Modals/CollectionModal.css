@@ -28,6 +28,7 @@
 
 .form-errors {
     min-height: 20px;
+    color:red;
 }
 
 #create-board-modal h2 {
