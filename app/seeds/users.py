@@ -3,48 +3,76 @@ from sqlalchemy.sql import text
 
 
 def seed_users():
-    demo = User(
+    demo = User( #1
         username='Demo',
         email='demo@aa.io',
         password='password',
         first_name="Demo",
         last_name="Man"
         )
-    luna = User(
+    luna = User( #2
         username='Hufflepuffle',
-        email='luna@aa.io',
+        email='luna@email.io',
         password='password',
         first_name="Luna",
         last_name="Lovegood"
         )
-    softboi = User(
+    softboi = User( #3
         username="inMyFeels",
         email='keshi-fan@email.io',
         password='password',
         first_name="Kevin",
         last_name="Nguyen"
     )
-    surfer = User(
+    surfer = User( #4
         username="wavecatcher",
         email='islandboy@email.io',
         password='password',
         first_name="Granola",
         last_name="Kyle"
     )
-    sansa = User(
+    sansa = User( #5
         username="QueenOfTheNorth",
         email="Sansa@email.io",
         password="password",
         first_name="Sansa",
         last_name="Stark"
         )
-    peter = User(
+    peter = User( #6
         username='NYCWallCrawler',
-        email='spider-man@aa.io',
+        email='spider-man@email.io',
         password='password',
         first_name="Peter",
         last_name="Parker"
         )
+    vincent = User( #7
+        username="CerberusWielder",
+        email='valentine@fantasy.io',
+        password='password',
+        first_name='Vincent',
+        last_name='Valentine'
+    )
+    snake = User( #8
+        username='BigBoss',
+        email='naked-snake@metal-gear.io',
+        password='password',
+        first_name='John',
+        last_name='Metal Gear'
+    )
+    karin = User( #9
+        username='rich.girl.sweep',
+        email='rushdown@sf.io',
+        password='password',
+        first_name='Karin',
+        last_name='Kanzuki'
+    )
+    ramona = User( #10
+        username='SassySiren',
+        email='ramona.flowers@email.io',
+        password='password',
+        first_name='Ramona',
+        last_name='Roberta'
+    )
 
     db.session.add(demo)
     db.session.add(luna)
@@ -52,6 +80,10 @@ def seed_users():
     db.session.add(surfer)
     db.session.add(sansa)
     db.session.add(peter)
+    db.session.add(vincent)
+    db.session.add(snake)
+    db.session.add(karin)
+    db.session.add(ramona)
     db.session.commit()
 
 

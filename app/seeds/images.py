@@ -95,13 +95,6 @@ def seed_images():
         )
     user_3_images.append(u3_image1)
 
-    u3_image2 = Image(
-        title="city hunter",
-        image_url="https://pinpix-bucket.s3.us-west-1.amazonaws.com/8ac127ff77194dd78fd3ff161ec0c9a5.jpg",
-        user_id="3"
-        )
-    user_3_images.append(u3_image2)
-
     #Adding user 4 to break up flow
     u4_image1 = Image(
         title="beach up",
@@ -109,6 +102,13 @@ def seed_images():
         user_id="4"
         )
     user_3_images.append(u4_image1)
+
+    u3_image2 = Image(
+        title="city hunter",
+        image_url="https://pinpix-bucket.s3.us-west-1.amazonaws.com/8ac127ff77194dd78fd3ff161ec0c9a5.jpg",
+        user_id="3"
+        )
+    user_3_images.append(u3_image2)
 
     u4_image2 = Image(
         title="vibes dude",
@@ -184,6 +184,72 @@ def seed_images():
     for image in user_5_images:
         db.session.add(image)
 
+    user_upload1 = []
+
+    us7_im1 = Image(
+        title="Cowboy Bebop",
+        image_url="https://pinpix-bucket.s3.us-west-1.amazonaws.com/46c7a69c9fa941bbb791532c6473f05d.jpg",
+        user_id="7"
+    )
+    user_upload1.append(us7_im1)
+
+    us7_im2 = Image(
+        title="Brutal Yoru",
+        image_url="https://pinpix-bucket.s3.us-west-1.amazonaws.com/3a0b24f435e44dfd878e10d416dd1fc4.jpg",
+        user_id="7",
+        description='cool aesthetic from my favorite game'
+    )
+    user_upload1.append(us7_im2)
+
+    us8_im1 = Image(
+        title="BRZ",
+        image_url="https://pinpix-bucket.s3.us-west-1.amazonaws.com/0e766117b7264c30ab408b97a6942929.jpg",
+        user_id="8",
+        description='toyota subaru brz'
+    )
+    user_upload1.append(us8_im1)
+
+    us10_im1 = Image(
+        title="fit check",
+        image_url="https://pinpix-bucket.s3.us-west-1.amazonaws.com/70df1155a8aa4f92a45f585f05957afe.jpg",
+        user_id="10",
+    )
+    user_upload1.append(us10_im1)
+
+    us9_im1 = Image(
+        title="concept album art",
+        image_url="https://pinpix-bucket.s3.us-west-1.amazonaws.com/271317c31f7e45dd924703528a38d795.jpg",
+        user_id="9",
+        description='cool idea for an album/magazine cover'
+    )
+    user_upload1.append(us9_im1)
+
+    us9_im2 = Image(
+        title="dream car",
+        image_url="https://pinpix-bucket.s3.us-west-1.amazonaws.com/4c5bdbfe88fe44988d178df1c715f00e.jpg",
+        user_id="9",
+        description=''
+    )
+    user_upload1.append(us9_im2)
+
+    us9_im3 = Image(
+        title="another cool album",
+        image_url="https://pinpix-bucket.s3.us-west-1.amazonaws.com/b6aba881e7864dea95c44d1e6b383166.jpg",
+        user_id="9",
+        description='nice idea for an album/magazine cover'
+    )
+    user_upload1.append(us9_im3)
+
+    us10_im2 = Image(
+        title="check my fit",
+        image_url="https://pinpix-bucket.s3.us-west-1.amazonaws.com/dc86dd9e0e154f9c8008244a4601b152.jpg",
+        user_id="10"
+    )
+    user_upload1.append(us10_im2)
+
+    for image in user_upload1:
+        db.session.add(image)
+    
     db.session.commit()
 
 

@@ -50,7 +50,7 @@ class ImageUtils:
     @staticmethod
     def get_all_images():
         """Get all images from database"""
-        all_images = Image.query.order_by(Image.id.desc()).limit(20)
+        all_images = Image.query.order_by(Image.id.desc()).limit(30)
         all_images = list(map(lambda x: ImageUtils.parse_data(x), all_images))
         return list({x["id"]: x for x in all_images}.values())
 

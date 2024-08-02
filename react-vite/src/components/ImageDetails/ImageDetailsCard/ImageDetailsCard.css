@@ -10,7 +10,7 @@
 }
 
 .details-card img {
-    width: 508px;
+    width: 50%;
     border-radius: 30px;
     padding: 20px;
 }
@@ -84,3 +84,4 @@
     background-color: #DEEBFF;
     cursor:pointer
 }
+
