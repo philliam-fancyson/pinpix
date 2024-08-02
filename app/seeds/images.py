@@ -240,6 +240,13 @@ def seed_images():
     )
     user_upload1.append(us9_im3)
 
+    us9_im4 = Image(
+        title="boba",
+        image_url="https://pinpix-bucket.s3.us-west-1.amazonaws.com/6df16d9af0c644729a0fc300a20d8615.jpg",
+        user_id="9",
+    )
+    user_upload1.append(us9_im4)
+
     us10_im2 = Image(
         title="check my fit",
         image_url="https://pinpix-bucket.s3.us-west-1.amazonaws.com/dc86dd9e0e154f9c8008244a4601b152.jpg",

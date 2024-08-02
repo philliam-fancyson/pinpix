@@ -1,9 +1,14 @@
 #landing-page {
     display:flex;
+    flex-direction: column;
     justify-content: center;
-    opacity: 0;
+    align-items: center;
+}
+
+#landing-page h1 {
     animation: slidefade 0.5s forwards;
     animation-delay: 0.5s;
+    opacity: 0;
     z-index: 2;
 }
 
@@ -16,4 +21,48 @@
         transform: translate(0px, -10px);
         opacity: 1;
 	}
+}
+
+@keyframes slidefade2 {
+    0% {
+        transform: translate(0px, 20px);
+        opacity: 0;
+    }
+	100% {
+        transform: translate(0px, -10px);
+        opacity: 1;
+	}
+}
+
+@keyframes moveHorizontal {
+    from {
+        translate: -100px;
+      }
+    
+      to {
+        translate: 0px;
+      }
+  }
+
+#landing-gallery {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.landing-element {
+    height: 60vh;
+    width: 100px;
+    overflow: hidden;
+    border-radius: 30px;
+    margin-left: 5px;
+}
+
+.landing-element img {
+    animation-name: moveHorizontal, slidefade2;
+    animation-fill-mode: forwards;
+    animation-duration: 45s, 2.5s;
+    animation-iteration-count: infinite, 1;
+    height: 65vh;
 }
