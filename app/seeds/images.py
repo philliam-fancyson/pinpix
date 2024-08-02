@@ -61,6 +61,13 @@ def seed_images():
         )
     user_2_images.append(u2_image4)
 
+    u2_image7 = Image(
+        title="vintage",
+        image_url="https://pinpix-bucket.s3.us-west-1.amazonaws.com/cf4bf7aa20394492865e58320b09c15c.jpg",
+        user_id="2"
+        )
+    user_2_images.append(u2_image7)
+
     u2_image5 = Image(
         title="city-pop",
         image_url="https://pinpix-bucket.s3.us-west-1.amazonaws.com/c782bf3a78ef4cd098c7f9d794c060d1.jpg",
@@ -103,6 +110,13 @@ def seed_images():
         )
     user_3_images.append(u4_image1)
 
+    u3_image3 = Image(
+        title="jdm",
+        image_url="https://pinpix-bucket.s3.us-west-1.amazonaws.com/5eb89d10864649cf8ca651aef5511a0e.jpg",
+        user_id="3"
+        )
+    user_3_images.append(u3_image3)
+
     u3_image2 = Image(
         title="city hunter",
         image_url="https://pinpix-bucket.s3.us-west-1.amazonaws.com/8ac127ff77194dd78fd3ff161ec0c9a5.jpg",
@@ -124,6 +138,20 @@ def seed_images():
         )
     user_3_images.append(u4_image3)
 
+    u9_image4 = Image(
+        title="computer ad",
+        image_url="https://pinpix-bucket.s3.us-west-1.amazonaws.com/fd5aa30e5e214175b06905132f73c1cf.jpg",
+        user_id="9"
+        )
+    user_3_images.append(u9_image4)
+
+    u9_image1 = Image(
+        title="pocky",
+        image_url="https://pinpix-bucket.s3.us-west-1.amazonaws.com/dadc488695f94d5c945cb4ec0836d206.jpg",
+        user_id="9"
+        )
+    user_3_images.append(u9_image1)
+
     u4_image5 = Image(
         title="coastal vibes 2",
         image_url="https://pinpix-bucket.s3.us-west-1.amazonaws.com/2e1d4ed5c9634de689cf7de341617716.jpg",
@@ -139,7 +167,7 @@ def seed_images():
         )
     user_3_images.append(u1_image6)
 
-    #User2 breawks user 1 flow
+    #User2 breaks user 1 flow
     u2_image6 = Image(
         title="aesthetics",
         image_url="https://pinpix-bucket.s3.us-west-1.amazonaws.com/cea15a6173f64fb791070ad86b0308f2.jpg",
@@ -166,12 +194,26 @@ def seed_images():
         )
     user_5_images.append(u5_image1)
 
+    u9_image3 = Image(
+        title="cool ad",
+        image_url="https://pinpix-bucket.s3.us-west-1.amazonaws.com/1daff152bf8141abbf43c4aba21dc212.jpg",
+        user_id="9"
+        )
+    user_5_images.append(u9_image3)
+
     u5_image2 = Image(
         title="pasture vibes",
         image_url="https://pinpix-bucket.s3.us-west-1.amazonaws.com/cf29b0f2b65f4ab09e03785cd632d705.jpg",
         user_id="5"
         )
     user_5_images.append(u5_image2)
+
+    u9_image2 = Image(
+        title="void alc",
+        image_url="https://pinpix-bucket.s3.us-west-1.amazonaws.com/39743759130745c8926c127b7a035df5.jpg",
+        user_id="9"
+        )
+    user_5_images.append(u9_image2)
 
     u1_image7 = Image(
         title="stylish",
