@@ -6,7 +6,7 @@ def seed_image_likes():
     likes = []
 
     like1 = ImageLike(
-        user_id=1,
+        user_id=8,
         image_id=36
     )
     likes.append(like1)
