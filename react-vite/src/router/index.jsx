@@ -9,10 +9,23 @@ import ShowCollections from '../components/Collection/ShowCollections/ShowCollec
 import CollectionDetails from '../components/Collection/ColectionDetails/CollectionDetails';
 import UploadedDetails from '../components/Collection/ColectionDetails/UploadedDetails';
 import AboutPage from '../components/AboutPage/AboutPage';
+import ErrorPage from '../components/ErrorPage/ErrorPage';
 
 export const router = createBrowserRouter([
   {
     element: <Layout />,
+    errorElement: <ErrorPage />,
+    // loader: async () => {
+    //   const res = await fetch(`/api/properties/${params.id}`);
+    //   if (res.status === 404) {
+    //     throw new Response("Not Found", { status: 404 });
+    //   }
+    //   const home = await res.json();
+    //   const descriptionHtml = parseMarkdown(
+    //     data.descriptionMarkdown
+    //   );
+    //   return { home, descriptionHtml };
+    // },
     children: [
       {
         path: "/",
