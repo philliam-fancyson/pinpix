@@ -73,7 +73,7 @@ def unauthorized():
     """
     return {'errors': {'message': 'Unauthorized'}}, 401
 
-@auth_routes.routes('/error-test/test')
+@auth_routes.route('/error-test/test')
 def error_test():
     """
     Throws error for error-testing
