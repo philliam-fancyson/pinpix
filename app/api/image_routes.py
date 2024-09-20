@@ -91,3 +91,16 @@ def add_image_like(id):
 @login_required
 def remove_all_like(id):
     return ImageUtils.remove_image_like(id)
+
+# TODO
+# TODO
+# TODO: Build out adding tags to image
+@image_routes.route("/<int:id>/tag", methods=["POST"])
+@login_required
+def add_image_tag(id):
+    return ImageUtils.add_tag(id)
+
+@image_routes.route("/<int:id>/tag", methods=["DELETE"])
+@login_required
+def add_image_tag(id):
+    return ImageUtils.remove_tag(id)
