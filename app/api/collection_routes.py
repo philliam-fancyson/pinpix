@@ -81,3 +81,16 @@ def get_user_collection_images(title):
     return jsonify(CollectionUtils.get_collection_images(format_title))
 
 # TODO Other User Collections
+
+# TODO
+# TODO: Build out adding tag to boards
+# TODO: Consider merging the two utility functions to one class
+@collection_routes.route("/<int:id>/tag", methods=["POST"])
+@login_required
+def add_image_tag(id):
+    return CollectionUtils.add_tag(id)
+
+@collection_routes.route("/<int:id>/tag", methods=["DELETE"])
+@login_required
+def add_image_tag(id):
+    return CollectionUtils.remove_tag(id)
