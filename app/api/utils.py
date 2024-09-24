@@ -1,5 +1,5 @@
 from os import name
-from app.models import db, User, Image, Collection, collection_images, Comment, ImageLike
+from app.models import db, User, Image, Collection, collection_images, Comment, ImageLike, Tag
 from flask_login import current_user
 from flask import Response
 from datetime import datetime
@@ -321,6 +321,24 @@ class CollectionUtils:
             return True
         except Exception as e:
             return e
+
+    @staticmethod
+    def add_tag(collection_id, data):
+        """Add Tag to collection"""
+        # TODO Test Route
+
+        tag = Tag.query.filter(Tag.title == data['title'])
+        if not tag:
+            tag = Tag(
+                title=data['title'],
+            )
+            db.session.add(tag)
+            db.session.commit()
+        collection = Collection.query.get(collection_id)
+        collection.tag_id = tag.id
+        db.session.commit()
+
+
 
 # * ------------------------------------------- Comment Utility Functions -------------------------------------------
 class CommentUtils:

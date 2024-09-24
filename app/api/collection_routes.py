@@ -88,7 +88,8 @@ def get_user_collection_images(title):
 @collection_routes.route("/<int:id>/tag", methods=["POST"])
 @login_required
 def add_image_tag(id):
-    return CollectionUtils.add_tag(id)
+    req_body = request.get_json()
+    return CollectionUtils.add_tag(id, req_body)
 
 @collection_routes.route("/<int:id>/tag", methods=["DELETE"])
 @login_required
