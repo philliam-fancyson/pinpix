@@ -99,9 +99,10 @@ def remove_all_like(id):
 @login_required
 def add_image_tag(id):
     req_body = request.get_json()
-    return ImageUtils.add_tag(id)
+    return ImageUtils.add_tag(id, req_body)
 
 @image_routes.route("/<int:id>/tag", methods=["DELETE"])
 @login_required
 def remove_image_tag(id):
-    return ImageUtils.remove_tag(id)
+    req_body = request.get_json()
+    return ImageUtils.remove_tag(id, req_body)

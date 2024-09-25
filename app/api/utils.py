@@ -195,6 +195,19 @@ class ImageUtils:
         db.session.commit()
         return True
 
+    @staticmethod
+    def remove_tag(image_id, data):
+        image = Image.query.get(image_id)
+        tag = Tag.query.filter(Tag.title == data['title'])
+        if not tag:
+            return {'error' : e}, 500
+        else:
+            db.session.delete(tag)
+            image.tag_id = None
+            db.session.commit()
+            return True
+
+
 
 # * ------------------------------------------- Collection Utility Functions -------------------------------------------
 class CollectionUtils:
