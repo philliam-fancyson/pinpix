@@ -177,6 +177,7 @@ class ImageUtils:
         except Exception as e:
             return {'error': e}, 500
 
+#TODO TEST THIS TODO
     @staticmethod
     def add_tag(image_id, data):
         """Add Tag to collection"""
@@ -192,6 +193,8 @@ class ImageUtils:
         image = Image.query.get(image_id)
         image.tag_id = tag.id
         db.session.commit()
+        return True
+
 
 # * ------------------------------------------- Collection Utility Functions -------------------------------------------
 class CollectionUtils:
@@ -338,6 +341,7 @@ class CollectionUtils:
         except Exception as e:
             return e
 
+# TODO TEST THIS TODO
     @staticmethod
     def add_tag(collection_id, data):
         """Add Tag to collection"""
@@ -353,6 +357,7 @@ class CollectionUtils:
         collection = Collection.query.get(collection_id)
         collection.tag_id = tag.id
         db.session.commit()
+        return True
 
 
 
