@@ -93,5 +93,5 @@ def add_image_tag(id):
 
 @collection_routes.route("/<int:id>/tag", methods=["DELETE"])
 @login_required
-def add_image_tag(id):
+def remove_image_tag(id):
     return CollectionUtils.remove_tag(id)
