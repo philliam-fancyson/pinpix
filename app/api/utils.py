@@ -200,7 +200,7 @@ class ImageUtils:
         image = Image.query.get(image_id)
         tag = Tag.query.filter(Tag.title == data['title'])
         if not tag:
-            return {'error' : e}, 500
+            return {'error' : "Tag does not exist"}, 500
         else:
             db.session.delete(tag)
             image.tag_id = None
@@ -372,6 +372,17 @@ class CollectionUtils:
         db.session.commit()
         return True
 
+    @staticmethod
+    def remove_tag(collection_id, data):
+        collection = Collection.query.get(collection_id)
+        tag = Tag.query.filter(Tag.title == data['title'])
+        if not tag:
+            return {'error' : "Tag does not exist"}, 500
+        else:
+            db.session.delete(tag)
+            collection.tag_id = None
+            db.session.commit()
+            return True
 
 
 # * ------------------------------------------- Comment Utility Functions -------------------------------------------
