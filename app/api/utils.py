@@ -177,6 +177,22 @@ class ImageUtils:
         except Exception as e:
             return {'error': e}, 500
 
+    @staticmethod
+    def add_tag(image_id, data):
+        """Add Tag to collection"""
+        # TODO Test Route
+
+        tag = Tag.query.filter(Tag.title == data['title'])
+        if not tag:
+            tag = Tag(
+                title=data['title'],
+            )
+            db.session.add(tag)
+            db.session.commit()
+        image = Image.query.get(image_id)
+        image.tag_id = tag.id
+        db.session.commit()
+
 # * ------------------------------------------- Collection Utility Functions -------------------------------------------
 class CollectionUtils:
     """Collection Utility Functions"""
