@@ -17,9 +17,20 @@ function SignupFormModal() {
   const [confirmPassword, setConfirmPassword] = useState("");
   const [errors, setErrors] = useState({});
   const [hasSubmitted, setHasSubmitted] = useState(false)
+  const [csrfToken, setCsrfToken] = useState('');
   const { closeModal } = useModal();
 
   if (sessionUser) closeModal();
+
+  useEffect(() => {
+    const fetchCsrfToken = async () => {
+        const response = await fetch('/api/auth/csrf-token');
+        const data = await response.json();
+        setCsrfToken(data.csrf_token);
+    };
+
+    fetchCsrfToken();
+}, []);
 
   useEffect(() => {
     const errors = {};
@@ -56,13 +67,16 @@ function SignupFormModal() {
     if (Object.values(errors).length) return;
 
     const serverResponse = await dispatch(
-      thunkSignup({
+      thunkSignup(
+        {
         email,
         first_name: firstName,
         last_name: lastName,
         username,
         password,
-      })
+      },
+      csrfToken
+    )
     );
 
     if (serverResponse) {

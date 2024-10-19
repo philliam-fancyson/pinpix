@@ -43,10 +43,13 @@ export const thunkLogin = (credentials, csrfToken) => async dispatch => {
   }
 };
 
-export const thunkSignup = (user) => async (dispatch) => {
+export const thunkSignup = (user, csrfToken) => async (dispatch) => {
   const response = await fetch("/api/auth/signup", {
     method: "POST",
-    headers: { "Content-Type": "application/json" },
+    headers: {
+      "Content-Type": "application/json",
+      'X-CSRFToken': csrfToken
+     },
     body: JSON.stringify(user)
   });
 
