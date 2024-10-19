@@ -12,7 +12,19 @@ function LoginFormModal() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState({});
+  const [csrfToken, setCsrfToken] = useState('');
   const { closeModal } = useModal();
+
+  // Fetch CSRF token
+  useEffect(() => {
+    const fetchCsrfToken = async () => {
+        const response = await fetch('/api/auth/csrf-token');
+        const data = await response.json();
+        setCsrfToken(data.csrf_token);
+    };
+
+    fetchCsrfToken();
+}, []);
 
   useEffect(() => {
     const errors = {}
@@ -24,7 +36,7 @@ function LoginFormModal() {
 
   const loginDemo = (e) => {
     e.preventDefault();
-    dispatch(thunkLogin({ email: "demo@aa.io", password: "password" }));
+    dispatch(thunkLogin({ email: "demo@aa.io", password: "password" }, csrfToken));
     navigate("/");
     closeModal();
   };

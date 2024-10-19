@@ -103,13 +103,12 @@ export const thunkGetCollectionImages = (title) => async (dispatch) => {
     }
 }
 
-export const addNewImage = (image) => async (dispatch) => {
+export const addNewImage = (image, csrfToken) => async (dispatch) => {
   const response = await fetch(`/api/images/new`, {
     method: "POST",
-  //   headers: {
-  //     'Accept': 'application/json',
-  //     "Content-Type": "application/json",
-  //   },
+    headers: {
+      'X-CSRFToken': csrfToken
+    },
     body: image
   });
 

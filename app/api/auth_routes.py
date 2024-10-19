@@ -1,4 +1,5 @@
-from flask import Blueprint, request
+from flask import Blueprint, jsonify, request
+from flask_wtf.csrf import generate_csrf
 from app.models import User, db
 from app.forms import LoginForm
 from app.forms import SignUpForm
@@ -26,6 +27,7 @@ def login():
     # Get the csrf_token from the request cookie and put it into the
     # form manually to validate_on_submit can be used
     form['csrf_token'].data = request.cookies['csrf_token']
+    print(form.validate_on_submit())
     if form.validate_on_submit():
         # Add the user to the session, we are logged in!
         user = User.query.filter(User.email == form.data['email']).first()
@@ -72,6 +74,14 @@ def unauthorized():
     Returns unauthorized JSON when flask-login authentication fails
     """
     return {'errors': {'message': 'Unauthorized'}}, 401
+
+@auth_routes.route('/csrf-token', methods=['GET'])
+def get_csrf_token():
+    """
+    Exposes the CSRF token.
+    """
+    token = generate_csrf()
+    return jsonify({'csrf_token': token})
 
 @auth_routes.route('/error-test/test')
 def error_test():

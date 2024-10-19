@@ -40,6 +40,7 @@ db.init_app(app)
 Migrate(app, db)
 
 # Application Security
+CSRFProtect(app)
 CORS(app)
 
 

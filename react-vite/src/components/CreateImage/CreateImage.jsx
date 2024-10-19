@@ -16,7 +16,19 @@ function CreateImage() {
     const [previewImg, setPreviewImg] = useState("")
     const [validationErrors, setValidationErrors] = useState({})
     const [hasSubmitted, setHasSubmitted] = useState(false)
+    const [csrfToken, setCsrfToken] = useState('');
     const sessionUser = useSelector(state => state.session.user);
+
+    // Fetch CSRF token
+    useEffect(() => {
+        const fetchCsrfToken = async () => {
+            const response = await fetch('/api/auth/csrf-token');
+            const data = await response.json();
+            setCsrfToken(data.csrf_token);
+        };
+
+        fetchCsrfToken();
+    }, []);
 
     // * Show Image Preview
     useEffect(() => {
@@ -55,7 +67,7 @@ function CreateImage() {
         // some sort of loading message is a good idea
         setImageLoading(true);
         let createdImage;
-        createdImage = await dispatch(addNewImage(formData));
+        createdImage = await dispatch(addNewImage(formData, csrfToken));
         navigate(`/pin/${createdImage.id}`);
     }
 
