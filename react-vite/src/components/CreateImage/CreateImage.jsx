@@ -18,6 +18,7 @@ function CreateImage() {
     const [hasSubmitted, setHasSubmitted] = useState(false)
     const [csrfToken, setCsrfToken] = useState('');
     const sessionUser = useSelector(state => state.session.user);
+    console.log(csrfToken)
 
     // Fetch CSRF token
     useEffect(() => {
