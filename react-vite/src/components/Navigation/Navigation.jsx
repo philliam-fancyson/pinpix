@@ -4,7 +4,7 @@ import { useSelector } from "react-redux";
 import ProfileButton from "./ProfileButton";
 import OpenModalButton from "../OpenModalButton/OpenModalButton";
 import LoginFormModal from "../Login/LoginFormModal"
-import SignupFormModal from "../SignupFormModal";
+import SignupFormModal from "../Signup/SignupFormModal";
 import "./Navigation.css";
 
 function Navigation() {

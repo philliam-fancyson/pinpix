@@ -5,7 +5,7 @@ import { FaRegUserCircle } from "react-icons/fa";
 import { thunkLogout } from "../../redux/session";
 import OpenModalMenuItem from "./OpenModalMenuItem";
 import LoginFormModal from "../Login/LoginFormModal"
-import SignupFormModal from "../SignupFormModal";
+import SignupFormModal from "../Signup/SignupFormModal";
 import "./Navigation.css"
 
 function ProfileButton() {
