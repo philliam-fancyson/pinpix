@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
-import { thunkLogin } from "../../redux/session";
+import { thunkLogin } from "../../../redux/session";
 import { useDispatch, useSelector } from "react-redux";
 import { Navigate, useNavigate } from "react-router-dom";
-import { useModal } from "../../context/Modal";
+import { useModal } from "../../../context/Modal";
 import "./LoginForm.css";
 
 function LoginFormModal() {

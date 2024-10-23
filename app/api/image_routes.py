@@ -92,8 +92,6 @@ def add_image_like(id):
 def remove_all_like(id):
     return ImageUtils.remove_image_like(id)
 
-# TODO
-# TODO
 # TODO: Build out adding tags to image
 @image_routes.route("/<int:id>/tag", methods=["POST"])
 @login_required

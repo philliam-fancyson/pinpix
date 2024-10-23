@@ -82,7 +82,6 @@ def get_user_collection_images(title):
 
 # TODO Other User Collections
 
-# TODO
 # TODO: Build out adding tag to boards
 # TODO: Consider merging the two utility functions to one class
 @collection_routes.route("/<int:id>/tag", methods=["POST"])

@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { FaRegUserCircle } from "react-icons/fa";
 import { thunkLogout } from "../../redux/session";
 import OpenModalMenuItem from "./OpenModalMenuItem";
-import LoginFormModal from "../LoginFormModal";
+import LoginFormModal from "../Login/LoginFormModal"
 import SignupFormModal from "../SignupFormModal";
 import "./Navigation.css"
 
