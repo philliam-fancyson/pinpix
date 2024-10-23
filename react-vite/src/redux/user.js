@@ -20,6 +20,20 @@ export const getUserInfo = (userId) => async (dispatch) => {
     }
 }
 
+export const getUserByUsername = (username) => async (dispatch) => {
+    try {
+        const response = await fetch(`/api/users/username/${username}`)
+        if (response.ok) {
+            const user = await response.json();
+            dispatch(getUser(user))
+        } else {
+            throw new Error("failed to load user")
+        }
+    } catch (err) {
+        return err
+    }
+}
+
 
 // * Reducer
 const initialState = { user: {}}
