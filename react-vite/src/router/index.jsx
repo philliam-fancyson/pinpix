@@ -10,6 +10,7 @@ import CollectionDetails from '../components/Collection/ColectionDetails/Collect
 import UploadedDetails from '../components/Collection/ColectionDetails/UploadedDetails';
 import AboutPage from '../components/AboutPage/AboutPage';
 import ErrorPage from '../components/ErrorPage/ErrorPage';
+import UserProfile from '../components/User/UserProfile';
 
 export const router = createBrowserRouter([
   {
@@ -62,6 +63,10 @@ export const router = createBrowserRouter([
       {
         path: "/boards/:username/:title",
         element: <CollectionDetails />
+      },
+      {
+        path: "/user/:username",
+        element: <UserProfile />
       }
     ],
   },
